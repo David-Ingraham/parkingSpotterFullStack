@@ -11,20 +11,54 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
+            background: linear-gradient(135deg, #1a0d29, #2d1b4e, #4a1942);
+            color: #e0d0f0;
+            min-height: 100vh;
         }
-        h1 { color: #2c3e50; }
-        h2 { color: #34495e; margin-top: 30px; }
+        h1 { 
+            color: #c084fc; 
+            text-shadow: 0 0 10px rgba(192, 132, 252, 0.3);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 { 
+            color: #a855f7; 
+            margin-top: 30px;
+            border-bottom: 2px solid #7c2d12;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #d8b4fe;
+        }
         .summary {
-            background: #e8f5e8;
+            background: linear-gradient(135deg, #7c2d12, #991b1b);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 20px 0;
-            border-left: 4px solid #27ae60;
+            border-left: 4px solid #c084fc;
+            box-shadow: 0 4px 15px rgba(124, 45, 18, 0.3);
+            color: #fecaca;
         }
         .last-updated {
-            color: #666;
+            color: #c4b5fd;
             font-style: italic;
+            background: rgba(168, 85, 247, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        ul {
+            background: rgba(168, 85, 247, 0.05);
+            padding: 15px 30px;
+            border-radius: 8px;
+            border-left: 3px solid #7c2d12;
+        }
+        li {
+            margin: 8px 0;
+            color: #e0d0f0;
+        }
+        p {
+            color: #d0c4e8;
         }
     </style>
 </head>
@@ -33,7 +67,7 @@
     <p class="last-updated"><strong>Last updated:</strong> December 2024</p>
 
     <div class="summary">
-        <strong>Summary: We built this app specifically to respect your privacy. We genuinely collect no personal data because we believe privacy is a fundamental right.</strong>
+        <strong>Summary: This app uses minimal user data. Location coordinates are processed temporarily to find nearby cameras and not stored permanently.</strong>
     </div>
 
     <h2>Overview</h2>
@@ -131,7 +165,7 @@
     <p>This privacy policy applies to all users regardless of location. Since we collect no personal data, there are no cross-border data transfer concerns.</p>
 
     <h2>Changes to This Policy</h2>
-    <p>We will update this privacy policy if our data practices change. Since our core principle is collecting no user data, any changes will maintain or strengthen privacy protections.</p>
+    <p>We will update this privacy policy if our data practices change. Any updates will be posted here with a new "Last updated" date.</p>
 
     <h2>Contact Us</h2>
     <p>If you have questions about this privacy policy, please create an issue on our GitHub repository.</p>
