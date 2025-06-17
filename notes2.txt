@@ -1,3 +1,12 @@
+add fucnitonlaity for users to get nearby cameras nearby to the one they selected.
+
+togleable for how many cameras they want 
+
+
+app icon needs to be fixed 
+
+
+
 === DEV/PROD SWITCHING GUIDE ===
 
 🔄 **Switch to PRODUCTION mode:**
@@ -63,8 +72,8 @@ easy to do diret search bc
 - [x] **AAB Build**: Successfully created release AAB with `./gradlew bundleRelease`
 
 🏗️ **Build Requirements**
-- [ ] **App icon**: High-res app icons for all required sizes
-- [ ] **App name**: Set proper app name in `strings.xml`
+- [x] **App icon**: High-res app icons for all required sizes
+- [x] **App name**: Set proper app name in `strings.xml`
 - [ ] **Version code**: Increment `versionCode` in `build.gradle`
 - [ ] **Version name**: Update `versionName` for user-facing version
 - [ ] **Package name**: Ensure unique package name (currently `com.frontend`)
@@ -128,25 +137,46 @@ Perfect for busy urban areas where parking is scarce. No more guessing - see exa
 📱 **Play Store Assets Needed**
 
 **App Store Listing Materials:**
-- [ ] App name and description ✅ (completed above)
-- [ ] Screenshots (phone, tablet, maybe TV)
-- [ ] App icon in various sizes
-- [ ] Feature graphic (1024x500px)
+- [x] App name and description ✅ (completed above)
+- [x] Screenshots (phone screenshots) ✅ (in screenshots folder)
+- [x] Feature graphic (1024x500px) ✅ (JPG completed)
 - [ ] Release notes ("What's new in this version")
 
 **Legal & Privacy:**
-- [ ] Privacy Policy (public URL required)
+- [x] Privacy Policy (public URL required) ✅ (GitHub Pages setup)
 - [ ] Content Rating Questionnaire prep
 
 **Account Setup:**
 - [ ] Complete Google Play Developer registration ($25 fee)
 - [ ] Driver's license verification (waiting on this)
 
+**Release Notes (Version 1.0):**
+---
+🎉 Welcome to Parking Spotter!
+
+This is our initial release bringing real-time parking availability to your fingertips.
+
+**What's New:**
+• Browse live NYC traffic camera feeds to check parking spots
+• Find the 5 nearest cameras to your current location
+• Search for cameras by specific address or intersection
+• Clean, easy-to-use interface with real camera footage
+• No sign-up required - start finding parking immediately
+
+**How it works:**
+See parking availability before you drive! No more circling the block looking for a spot. Just open the app, check the cameras, and drive directly to available parking.
+
+Perfect for NYC drivers who want to save time and gas by seeing real parking conditions before leaving home.
+---
+
 **Current Status:**
-✅ AAB file successfully built and ready
+✅ AAB file successfully built with correct app name
 ✅ App description finalized
-⏳ Need screenshots and graphics
-⏳ Need privacy policy
+✅ Screenshots captured and organized
+✅ Feature graphic created
+✅ Privacy policy hosted (GitHub Pages)
+✅ Release notes written
 ⏳ Account verification pending
+⏳ Content rating questionnaire
 
 
