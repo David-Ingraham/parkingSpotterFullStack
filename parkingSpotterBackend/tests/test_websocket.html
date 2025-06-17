@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>WebSocket Test Client</h2>
+    <div id="status">Disconnected</div>
+    <div id="messages"></div>
+
+    <script>
+        const socket = io('http://localhost:8001', {
+            query: {
+                client_id: 'test_client_1'
+            }
+        });
+
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = 'Connected';
+            console.log('Connected to WebSocket server');
+        });
+
+        socket.on('disconnect', () => {
+            document.getElementById('status').textContent = 'Disconnected';
+            console.log('Disconnected from WebSocket server');
+        });
+
+        socket.on('camera_update', (data) => {
+            console.log('Camera update:', data);
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += `<p>Camera Update: ${JSON.stringify(data)}</p>`;
+        });
+    </script>
+</body>
+</html> 

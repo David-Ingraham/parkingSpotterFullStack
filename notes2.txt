@@ -1,0 +1,98 @@
+=== DEV/PROD SWITCHING GUIDE ===
+
+🔄 **Switch to PRODUCTION mode:**
+1. Edit `frontEnd/.env`:
+   ```
+   #BACKEND_URL=http://10.0.2.2:8000
+   BACKEND_URL=https://parkingspotterbackend.onrender.com
+   ```
+
+2. Set keystore environment variables in PowerShell:
+   ```
+  
+   ```
+
+3. Build release APK:
+   ```
+   cd frontEnd
+  >>>>>wrong command  npx react-native run-android --variant=release
+   ```
+
+🔄 **Switch to DEVELOPMENT mode:**
+1. Edit `frontEnd/.env`:
+   ```
+   BACKEND_URL=http://10.0.2.2:8000
+   #BACKEND_URL=https://parkingspotterbackend.onrender.com
+   ```
+
+2. Run debug build:
+   ```
+   cd frontEnd
+   npx react-native run-android
+   ```
+
+=== OLD NOTES ===
+
+All environment variables secured - Let's check for any .env files in your repo
+Input validation implemented - Need to check your route handlers
+Error handling doesn't expose internals - Need to review error responses
+Database access restricted - Check if you have proper query parameterization
+
+merge the back and frontedn repos
+
+get user coords back to sceen in nearest screen, not currently working but the geofixing is tricky 
+
+can we make request to the dot api from the frontend? how much should be split for optimal perfmorance?
+easy to do diret search bc
+
+
+=== RELEASE CHECKLIST ===
+
+🔒 **Security & Environment**
+- [x] **Environment variables**: Ensure `.env.production` has correct production API URLs
+- [x] **Backend URL**: Update `BACKEND_URL` to production server (not localhost)
+- [x] **API keys**: Verify all production API keys are set
+- [x] **Remove debug code**: Remove any console.logs, test data, or debug endpoints
+
+🔑 **Android Signing & Build**
+- [ ] **Release keystore**: Ensure `parking-spotter-release.keystore` is properly configured
+- [ ] **Keystore passwords**: Store keystore passwords securely (not in code)
+- [ ] **Build configuration**: Verify `android/app/build.gradle` has correct signing config for release
+- [ ] **ProGuard**: Consider enabling `enableProguardInReleaseBuilds = true` for code obfuscation
+- [ ] **Test release build**: Run `npx react-native run-android --variant=release` to test
+
+🏗️ **Build Requirements**
+- [ ] **App icon**: High-res app icons for all required sizes
+- [ ] **App name**: Set proper app name in `strings.xml`
+- [ ] **Version code**: Increment `versionCode` in `build.gradle`
+- [ ] **Version name**: Update `versionName` for user-facing version
+- [ ] **Package name**: Ensure unique package name (currently `com.frontend`)
+
+🌐 **Backend Deployment**
+- [ ] **Production server**: Backend deployed and running on production server
+- [ ] **Database**: Production database set up and populated
+- [ ] **CORS**: Configure CORS for production domain
+- [ ] **HTTPS**: Ensure production API uses HTTPS
+- [ ] **Error handling**: Proper error responses for all endpoints
+
+📱 **App Store Requirements**
+- [ ] **Screenshots**: High-quality screenshots for Play Store listing
+- [ ] **App description**: Write compelling store description
+- [ ] **Privacy policy**: Create and host privacy policy
+- [ ] **Content rating**: Determine appropriate content rating
+- [ ] **Permissions**: Document why each permission is needed
+
+🧪 **Testing**
+- [ ] **NYC location testing**: Test with real NYC coordinates on device
+- [ ] **Network handling**: Test with poor/no network connection
+- [ ] **Permission flows**: Test location permission denial/granting
+- [ ] **Camera image loading**: Test with slow network
+- [ ] **Error states**: Test all error conditions
+
+🚀 **Performance**
+- [ ] **Bundle size**: Check APK size (aim for <50MB if possible)
+- [ ] **Image optimization**: Optimize camera images for mobile
+- [ ] **Loading states**: Proper loading indicators everywhere
+- [ ] **Memory leaks**: Test app doesn't crash after extended use
+
+

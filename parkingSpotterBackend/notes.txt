@@ -1,0 +1,86 @@
+inconsitent rendering issues were likely due to flask dev server
+limitations. once i started serving with waitress all the photos were rendering
+if its hosted on render it will have amore robust servering mechanism
+to handle things. 
+
+i wont be able to test the render endpoint 
+from the frontedn unless i get an emulator on my mac, 
+but that shit is def way too old. my work deksopt is good,
+
+but the firewall blocks render.com
+
+
+user can only submit a street to be watched once. if they try it again it shoudl say only one watch session per street.
+
+10 watch sessions per user?
+
+
+some of the cams in the json have null values for the lat and lng. fix that 
+
+
+fixed ^^^^
+
+
+
+detect gridlock by stagnant cars (detection model sees same car not move for time), update gridlock watcher page
+
+in the direct search, i want to show the camera they select and also the five nearest, toggleable
+
+SECURITY AUDIT SUMMARY (DATE: 2024)
+==================================
+
+IDENTIFIED SECURITY ISSUES:
+1. Backend Security Issues:
+   - File system vulnerabilities (directory traversal, no file size limits)
+   - Missing rate limiting
+   - Error handling exposing internal details
+   - No proper input validation for images
+
+2. Frontend Security Issues:
+   - HTTP instead of HTTPS
+   - Hard-coded development URLs
+   - Missing input sanitization
+   - Exposed error details
+
+3. Configuration Issues:
+   - Cleartext traffic allowed in Android
+   - Debug keystore in version control
+   - Improper environment separation
+   - Missing API versioning
+
+PROPOSED FIXES:
+Files requiring security updates:
+1. Backend:
+   - routes/__init__.py (rate limiting)
+   - helpers/fetch_image.py (file validation)
+   - All route files (error handling)
+
+2. Frontend:
+   - config.ts (HTTPS enforcement, environment config)
+   - Android manifests (remove cleartext traffic)
+
+ADDITIONAL RECOMMENDATIONS:
+1. Dependencies to add:
+   - flask-limiter
+   - flask-talisman
+
+2. Configuration changes:
+   - Implement proper SSL/TLS
+   - Add security headers
+   - Set up API versioning
+   - Add request validation middleware
+   - Implement monitoring and alerting
+
+3. Android security:
+   - Remove cleartext traffic allowance
+   - Add network security config
+   - Implement certificate pinning
+
+4. Logging improvements:
+   - Structured logging
+   - Production-safe error handling
+   - Error tracking system
+
+
+
+chekc every camera API
