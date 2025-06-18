@@ -8,6 +8,7 @@ import {
   FlatList,
   ActivityIndicator,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import { useNearbyPhotos } from '../hooks/useNearbyPhotos';
 
@@ -67,11 +68,19 @@ export function NearestParkingScreen() {
         </View>
       </View>
 
-      <Button
-        title="Get Nearby Photos"
+      <TouchableOpacity
+        style={[styles.mainActionButton, loading && styles.mainActionButtonDisabled]}
         onPress={loadPhotos}
         disabled={loading}
-      />
+        activeOpacity={0.8}
+      >
+        <View style={styles.buttonGradient}>
+          <Text style={styles.mainActionButtonText}>
+            {loading ? 'SEARCHING...' : 'GET NEARBY PHOTOS'}
+          </Text>
+          <View style={styles.buttonAccent} />
+        </View>
+      </TouchableOpacity>
       
       {coords && (
         <Text style={styles.coords}>
@@ -107,97 +116,152 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     alignItems: 'center',
-    backgroundColor: '#2e003e',
+    backgroundColor: '#0f001a',
   },
   controlsContainer: {
     width: '90%',
     marginBottom: 20,
-    padding: 16,
-    backgroundColor: '#3f0058',
-    borderRadius: 8,
+    padding: 20,
+    backgroundColor: 'rgba(42, 0, 64, 0.9)',
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 140, 66, 0.3)', // Orange border accent
+    elevation: 8,
+    shadowColor: '#FF8C42',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
   },
   selectorLabel: {
-    color: '#fff',
-    fontSize: 16,
+    color: '#FFB366',
+    fontSize: 20,
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
+    fontWeight: '900',
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    letterSpacing: 2.5,
+    textTransform: 'uppercase',
+    textShadowColor: '#8B5FBF', // Purple shadow for contrast
+    textShadowOffset: { width: -1, height: 2 },
+    textShadowRadius: 8,
+    transform: [{ skewX: '-5deg' }], // Slight slant for attitude
   },
   buttonGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: 8,
+    gap: 10,
   },
   cameraButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#555',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: 'rgba(85, 85, 85, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 95, 191, 0.2)',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
   },
   cameraButtonSelected: {
-    backgroundColor: '#8B5FBF',
+    backgroundColor: '#FF8C42', // Orange sunset
+    borderColor: '#FFB366',
+    elevation: 8,
+    shadowColor: '#FF8C42',
+    shadowOpacity: 0.8,
   },
   cameraButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   cameraButtonTextSelected: {
     color: '#fff',
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
   errorContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2e003e',
+    backgroundColor: '#0f001a',
     padding: 20,
   },
   errorTitle: {
     color: '#ff4444',
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 16,
     textAlign: 'center',
+    textShadowColor: 'rgba(255, 68, 68, 0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
   errorMessage: {
     color: '#fff',
     fontSize: 18,
     textAlign: 'center',
     marginBottom: 24,
+    lineHeight: 24,
   },
   coords: {
     marginTop: 12,
-    fontSize: 16,
-    color: '#fff',
+    fontSize: 14,
+    color: '#FFB366',
+    fontFamily: 'System',
+    fontWeight: '600',
+    letterSpacing: 0.8,
+    textShadowColor: 'rgba(255, 140, 66, 0.4)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
   },
   loader: {
     marginTop: 20,
   },
   errorText: {
-    color: 'red',
+    color: '#ff6b9d',
     marginTop: 20,
+    fontSize: 16,
+    textAlign: 'center',
   },
   list: {
     padding: 16,
   },
   photoCard: {
-    marginBottom: 16,
-    padding: 8,
-    backgroundColor: '#3f0058',
-    borderRadius: 8,
+    marginBottom: 20,
+    padding: 12,
+    backgroundColor: 'rgba(42, 0, 64, 0.9)',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 140, 66, 0.4)', // Orange accent border
+    elevation: 8,
+    shadowColor: '#FF8C42',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
   },
   photoLabel: {
     color: '#fff',
-    fontSize: 16,
-    marginBottom: 8,
+    fontSize: 18,
+    marginBottom: 12,
+    textAlign: 'center',
+    fontWeight: '600',
+    textShadowColor: 'rgba(139, 95, 191, 0.5)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
   photo: {
     width: 320,
     height: 240,
-    borderRadius: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 95, 191, 0.2)',
   },
   coordsError: {
     color: '#ffaa00',
@@ -212,5 +276,62 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 24,
     fontFamily: 'monospace',
+    lineHeight: 18,
+  },
+  mainActionButton: {
+    width: '90%',
+    height: 60,
+    borderRadius: 8,
+    backgroundColor: '#FF8C42', // Orange sunset primary
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: '#FFB366', // Lighter orange border
+    elevation: 12,
+    shadowColor: '#FF8C42',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.6,
+    shadowRadius: 12,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  mainActionButtonDisabled: {
+    backgroundColor: 'rgba(255, 140, 66, 0.4)',
+    borderColor: 'rgba(255, 179, 102, 0.3)',
+    shadowOpacity: 0.2,
+  },
+  buttonGradient: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    zIndex: 2,
+  },
+  mainActionButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '900',
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace', // Monospace for that distinctive look
+    letterSpacing: 3,
+    textShadowColor: '#FF8C42',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 6,
+    textTransform: 'uppercase',
+    textDecorationLine: 'underline',
+    textDecorationColor: 'rgba(255, 140, 66, 0.6)',
+  },
+  buttonAccent: {
+    position: 'absolute',
+    top: -20,
+    right: -20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'rgba(139, 95, 191, 0.3)', // Purple accent
+    zIndex: 1,
   },
 }); 
