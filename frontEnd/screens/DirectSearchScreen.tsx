@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ActivityIndicator, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Platform } from 'react-native';
 import { AddressAutocomplete } from '../components/AddressAutocomplete';
 import { BACKEND_URL } from '@env';
 
@@ -54,7 +54,7 @@ export function DirectSearchScreen() {
   };
 
   return (
-    <View style={styles.screenContainer}>
+    <ScrollView style={styles.screenContainer} contentContainerStyle={styles.scrollContent}>
       <View style={styles.searchContainer}>
         <Text style={styles.title}>Search by Address</Text>
         
@@ -94,25 +94,20 @@ export function DirectSearchScreen() {
           
           {error && <Text style={styles.errorText}>{error}</Text>}
           
-          <FlatList
-            data={images}
-            keyExtractor={(item) => item.address}
-            contentContainerStyle={styles.list}
-            renderItem={({ item, index }) => (
-              <View style={styles.photoCard}>
-                <Text style={styles.photoLabel}>
-                  {index === 0 ? '📍 ' : ''}{item.address.replace(/_/g, " ")}
-                </Text>
-                <Image 
-                  source={{ uri: item.url }} 
-                  style={styles.photo} 
-                />
-              </View>
-            )}
-          />
+          {images.map((image, index) => (
+            <View key={image.address} style={styles.photoCard}>
+              <Text style={styles.photoLabel}>
+                {index === 0 ? '📍 ' : ''}{image.address.replace(/_/g, " ")}
+              </Text>
+              <Image 
+                source={{ uri: image.url }} 
+                style={styles.photo} 
+              />
+            </View>
+          ))}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -120,6 +115,9 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: '#0f001a',
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   searchContainer: {
     padding: 20,

@@ -1,6 +1,6 @@
 // App.tsx
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/HomeScreen';
@@ -58,12 +58,15 @@ export default function App() {
 
 const styles = StyleSheet.create({
   gradientHeaderText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#8B5FBF',
-    textShadowColor: 'rgba(139, 95, 191, 0.5)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-    letterSpacing: 0.5,
+    fontSize: 18,
+    fontWeight: '900',
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    color: '#FFB366',
+    textShadowColor: '#8B5FBF',
+    textShadowOffset: { width: -1, height: 2 },
+    textShadowRadius: 6,
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+    transform: [{ skewX: '-3deg' }],
   },
 });

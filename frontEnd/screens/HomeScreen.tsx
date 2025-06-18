@@ -17,6 +17,7 @@ export function HomeScreen() {
   return (
     <View style={styles.homeContainer}>
       <View style={styles.gradientOverlay}>
+        <Text style={styles.pageTitle}>Parking Spotter</Text>
         <TouchableOpacity 
           style={[styles.card, styles.cardPrimary]}
           onPress={() => navigation.navigate('DirectSearch')}
@@ -61,6 +62,20 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     backgroundColor: 'rgba(46, 0, 62, 0.8)',
+  },
+  pageTitle: {
+    color: '#FFB366',
+    fontSize: 36,
+    fontWeight: '900',
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    textAlign: 'center',
+    marginBottom: 40,
+    textShadowColor: '#8B5FBF',
+    textShadowOffset: { width: -2, height: 3 },
+    textShadowRadius: 8,
+    letterSpacing: 4,
+    textTransform: 'uppercase',
+    transform: [{ skewX: '-5deg' }],
   },
   card: {
     borderRadius: 20,

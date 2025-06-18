@@ -2,11 +2,10 @@ import React, { useState, useCallback } from 'react';
 import {
   View,
   TextInput,
-  FlatList,
   Text,
   TouchableOpacity,
   StyleSheet,
-  ListRenderItem,
+  ScrollView,
 } from 'react-native';
 import cameraLocations from '../data/camera_locations.json';
 import { CameraLocations } from '../types/camera';
@@ -49,15 +48,6 @@ export function AddressAutocomplete({ onSelectAddress }: AddressAutocompleteProp
     onSelectAddress(address); // Pass back the underscore_formatted address
   };
 
-  const renderSuggestion: ListRenderItem<string> = ({ item }) => (
-    <TouchableOpacity
-      style={styles.suggestionItem}
-      onPress={() => handleSelectAddress(item)}
-    >
-      <Text style={styles.suggestionText}>{formatAddress(item)}</Text>
-    </TouchableOpacity>
-  );
-
   return (
     <View style={styles.container}>
       <TextInput
@@ -71,12 +61,17 @@ export function AddressAutocomplete({ onSelectAddress }: AddressAutocompleteProp
         placeholderTextColor="#666"
       />
       {suggestions.length > 0 && (
-        <FlatList
-          data={suggestions}
-          renderItem={renderSuggestion}
-          keyExtractor={(item) => item}
-          style={styles.suggestionsList}
-        />
+        <ScrollView style={styles.suggestionsList} nestedScrollEnabled={true}>
+          {suggestions.map((suggestion) => (
+            <TouchableOpacity
+              key={suggestion}
+              style={styles.suggestionItem}
+              onPress={() => handleSelectAddress(suggestion)}
+            >
+              <Text style={styles.suggestionText}>{formatAddress(suggestion)}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       )}
     </View>
   );

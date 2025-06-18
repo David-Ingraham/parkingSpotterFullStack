@@ -5,7 +5,7 @@ import {
   Button,
   Image,
   StyleSheet,
-  FlatList,
+  ScrollView,
   ActivityIndicator,
   TouchableOpacity,
   Platform,
@@ -44,7 +44,8 @@ export function NearestParkingScreen() {
   }
 
   return (
-    <View style={styles.screenContainer}>
+    <ScrollView style={styles.screenContainer} contentContainerStyle={styles.scrollContent}>
+      
       <View style={styles.controlsContainer}>
         <Text style={styles.selectorLabel}>Number of Cameras: {numCams}</Text>
         <View style={styles.buttonGrid}>
@@ -93,30 +94,42 @@ export function NearestParkingScreen() {
       {/* Show other types of errors in the normal way */}
       {error && <Text style={styles.errorText}>{error}</Text>}
 
-      <FlatList
-        data={photos}
-        keyExtractor={(item) => item.address}
-        contentContainerStyle={styles.list}
-        renderItem={({ item }) => (
-          <View style={styles.photoCard}>
-            <Text style={styles.photoLabel}>{item.address.replace(/_/g, " ")}</Text>
-            <Image 
-              source={{ uri: item.uri }} 
-              style={styles.photo} 
-            />
-          </View>
-        )}
-      />
-    </View>
+      {photos.map((photo, index) => (
+        <View key={photo.address} style={styles.photoCard}>
+          <Text style={styles.photoLabel}>{photo.address.replace(/_/g, " ")}</Text>
+          <Image 
+            source={{ uri: photo.uri }} 
+            style={styles.photo} 
+          />
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    backgroundColor: '#0f001a',
+  },
+  scrollContent: {
     paddingTop: 20,
     alignItems: 'center',
-    backgroundColor: '#0f001a',
+    paddingBottom: 20,
+  },
+  pageTitle: {
+    color: '#FFB366',
+    fontSize: 36,
+    fontWeight: '900',
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    textAlign: 'center',
+    marginBottom: 30,
+    textShadowColor: '#8B5FBF',
+    textShadowOffset: { width: -2, height: 3 },
+    textShadowRadius: 8,
+    letterSpacing: 4,
+    textTransform: 'uppercase',
+    transform: [{ skewX: '-5deg' }],
   },
   controlsContainer: {
     width: '90%',
