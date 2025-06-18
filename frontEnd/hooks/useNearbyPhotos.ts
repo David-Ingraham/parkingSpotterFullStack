@@ -67,18 +67,24 @@ function getCurrentPosition(): Promise<{ lat: number; lng: number }> {
  */
 async function fetchPhotos(
   lat: number,
-  lng: number
+  lng: number,
+  numCams: number = 5
 ): Promise<PhotoItem[]> {
   try {
     const response = await fetch(SERVER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ lat, lng }),
+      body: JSON.stringify({ lat, lng, numCams }),
     });
 
-    const { images } = await response.json();
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
 
-    // Convert each base64 string to a data URI
+    const responseData = await response.json();
+    const { images } = responseData;
+
+    // Convert each image to PhotoItem
     return images.map((img: any) => ({
       address: img.address,
       uri: img.url,
@@ -91,7 +97,7 @@ async function fetchPhotos(
 /**
  * Custom hook to manage loading location + photos.
  */
-export function useNearbyPhotos() {
+export function useNearbyPhotos(numCams: number = 5) {
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [photos, setPhotos] = useState<PhotoItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -118,7 +124,7 @@ export function useNearbyPhotos() {
         throw new Error('This Feature of Parking Spotter Only Works in NYC. Check your location services or VPNs');
       }
 
-      const fetched = await fetchPhotos(lat, lng);
+      const fetched = await fetchPhotos(lat, lng, numCams);
       setPhotos(fetched);
     } catch (err: any) {
       setError(err.message);

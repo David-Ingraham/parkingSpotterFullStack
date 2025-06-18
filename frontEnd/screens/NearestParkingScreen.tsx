@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,11 +7,15 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import { useNearbyPhotos } from '../hooks/useNearbyPhotos';
 
 export function NearestParkingScreen() {
-  const { coords, photos, loading, error, loadPhotos } = useNearbyPhotos();
+  const [numCams, setNumCams] = useState(5);
+  const { coords, photos, loading, error, loadPhotos } = useNearbyPhotos(numCams);
+
+  const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 
   // If it's the NYC boundary error, show a centered message with coordinates
   if (error?.includes(' This feature of parking spotter only works in NYC')) {
@@ -40,6 +44,29 @@ export function NearestParkingScreen() {
 
   return (
     <View style={styles.screenContainer}>
+      <View style={styles.controlsContainer}>
+        <Text style={styles.selectorLabel}>Number of Cameras: {numCams}</Text>
+        <View style={styles.buttonGrid}>
+          {cameraOptions.map((count) => (
+            <TouchableOpacity
+              key={count}
+              style={[
+                styles.cameraButton,
+                numCams === count && styles.cameraButtonSelected
+              ]}
+              onPress={() => setNumCams(count)}
+            >
+              <Text style={[
+                styles.cameraButtonText,
+                numCams === count && styles.cameraButtonTextSelected
+              ]}>
+                {count}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+
       <Button
         title="Get Nearby Photos"
         onPress={loadPhotos}
@@ -81,6 +108,45 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     alignItems: 'center',
     backgroundColor: '#2e003e',
+  },
+  controlsContainer: {
+    width: '90%',
+    marginBottom: 20,
+    padding: 16,
+    backgroundColor: '#3f0058',
+    borderRadius: 8,
+  },
+  selectorLabel: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  buttonGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  cameraButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#555',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 4,
+  },
+  cameraButtonSelected: {
+    backgroundColor: '#8B5FBF',
+  },
+  cameraButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cameraButtonTextSelected: {
+    color: '#fff',
   },
   errorContainer: {
     flex: 1,

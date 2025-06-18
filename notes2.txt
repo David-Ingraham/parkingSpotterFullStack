@@ -2,8 +2,15 @@ add fucnitonlaity for users to get nearby cameras nearby to the one they selecte
 
 togleable for how many cameras they want 
 
+clean up test phtots before you push to github 
+
 
 app icon needs to be fixed 
+
+better type validation for incoming data on backedn
+
+./
+
 
 
 
