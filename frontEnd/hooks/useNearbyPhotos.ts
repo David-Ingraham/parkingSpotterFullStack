@@ -84,11 +84,13 @@ async function fetchPhotos(
     const responseData = await response.json();
     const { images } = responseData;
 
-    // Convert each image to PhotoItem
-    return images.map((img: any) => ({
+    // Convert each image to PhotoItem - keep intermediate variable!
+    const photos = images.map((img: any) => ({
       address: img.address,
       uri: img.url,
     }));
+    
+    return photos;
   } catch (err: any) {
     throw new Error(`Failed to fetch photos: ${err.message}`);
   }
@@ -128,7 +130,7 @@ export function useNearbyPhotos(numCams: number = 5) {
       setPhotos(fetched);
     } catch (err: any) {
       setError(err.message);
-      Alert.alert('Location Error', err.message);
+      // Alert.alert('Location Error', err.message);
     } finally {
       setLoading(false);
     }

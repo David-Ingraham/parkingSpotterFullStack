@@ -19,7 +19,7 @@ export function NearestParkingScreen() {
   const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 
   // If it's the NYC boundary error, show a centered message with coordinates
-  if (error?.includes(' This feature of parking spotter only works in NYC')) {
+  if (error?.includes('This Feature of Parking Spotter Only Works in NYC')) {
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorTitle}>Location Out of Range</Text>
