@@ -21,7 +21,7 @@ Development: http://localhost:8000
 
 ### 1. Find Nearest Cameras
 
-Get the 5 closest parking cameras to given coordinates.
+Get the closest parking cameras to given coordinates (default 5, configurable 1-8).
 
 **Endpoint:** `POST /five_nearest`
 
@@ -29,9 +29,15 @@ Get the 5 closest parking cameras to given coordinates.
 ```json
 {
   "lat": 40.7589,
-  "lng": -73.9851
+  "lng": -73.9851,
+  "numCams": 10
 }
 ```
+
+**Parameters:**
+- `lat` (required): Latitude coordinate within NYC bounds
+- `lng` (required): Longitude coordinate within NYC bounds  
+- `numCams` (optional): Number of cameras to return (1-8, default: 5)
 
 **Response:**
 ```json
@@ -46,22 +52,32 @@ Get the 5 closest parking cameras to given coordinates.
 ```
 
 **Error Responses:**
-- `400` - Invalid coordinates
+- `400` - Invalid coordinates or numCams out of range
 - `429` - Rate limit exceeded
 - `500` - Server error
 
 ### 2. Search Specific Cameras
 
-Get images for specific camera addresses.
+Get images for cameras near specific searched addresses (configurable limit 1-8).
 
 **Endpoint:** `POST /search_cameras`
 
 **Request Body:**
 ```json
 {
-  "addresses": ["Camera_Address_1", "Camera_Address_2"]
+  "addresses": ["Camera_Address_1", "Camera_Address_2"],
+  "numCams": 10
 }
 ```
+
+**Parameters:**
+- `addresses` (required): Array of camera address strings to search for
+- `numCams` (optional): Maximum number of nearby cameras to return (1-8, default: 5)
+
+**Behavior:**
+- For each searched address, finds that camera's coordinates
+- Returns up to `numCams` cameras near those searched locations  
+- Avoids duplicates when multiple search addresses have overlapping nearby cameras
 
 **Response:**
 ```json

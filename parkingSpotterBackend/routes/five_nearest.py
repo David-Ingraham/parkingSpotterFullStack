@@ -10,7 +10,7 @@ import os
 import inspect 
 
 bp = Blueprint('five_nearest', __name__)
-BASE_URL = os.getenv("BACKEND_URL")
+BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 # NYC boundary coordinates
 NYC_BOUNDS = {
@@ -76,6 +76,18 @@ def fiveNearest():
     if not is_within_nyc(lat, lng):
         return jsonify(error="Location must be within NYC boundaries"), 400
     
+    # Get and validate numCams parameter
+    numCams = data.get("numCams", 5)
+    
+    # Input validation for numCams - convert string to int if possible
+    try:
+        numCams = int(numCams)
+    except (ValueError, TypeError):
+        return jsonify(error="numCams must be a valid integer"), 400
+        
+    if numCams < 1 or numCams > 8:  # Set reasonable limits
+        return jsonify(error="numCams must be between 1 and 8"), 400
+
     # Create a unique directory for this request
     request_id = str(uuid.uuid4())
     img_dir = os.path.join("static", "imgs", request_id)
@@ -93,7 +105,7 @@ def fiveNearest():
     stamp = int(time.time())
     output = []
 
-    for addr, info in list(cameras.items())[:5]:
+    for addr, info in list(cameras.items())[:numCams]:
         try:
             img = fetch_and_save_image(info["camera_id"], stamp)
             if img.width > 640:

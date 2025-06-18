@@ -10,7 +10,7 @@ from haversine import haversine
 
 
 
-def find_nearby_cameras(user_lat, user_lng, camera_data_file, radius=2):
+def find_nearby_cameras(user_lat, user_lng, camera_data_file, radius=7):
     
     if user_lat is None or user_lng is None:
         print("Failed to get the geocode for the user address.")
@@ -23,7 +23,7 @@ def find_nearby_cameras(user_lat, user_lng, camera_data_file, radius=2):
         print(f"Failed to load camera data JSON: {e}")
         return
 
-    nearby_cameras = {}
+    nearby_cameras_with_distance = []
     user_lat_lngt = (user_lat, user_lng)
 
     #print(user_lat_lngt)
@@ -37,7 +37,15 @@ def find_nearby_cameras(user_lat, user_lng, camera_data_file, radius=2):
             distance = haversine(user_lat_lngt,camera_lat_lng)
            #print(f'addy: {address}   lat : {camera_lat}    long : {camera_lng}   distance : {distance} ')
             if distance <= radius:
-                nearby_cameras[address] = details
+                nearby_cameras_with_distance.append((distance, address, details))
+
+    # Sort by distance (closest first)
+    nearby_cameras_with_distance.sort(key=lambda x: x[0])
+    
+    # Convert back to dictionary format (now sorted by distance)
+    nearby_cameras = {}
+    for distance, address, details in nearby_cameras_with_distance:
+        nearby_cameras[address] = details
 
     return nearby_cameras
 
