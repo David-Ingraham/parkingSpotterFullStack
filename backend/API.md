@@ -117,8 +117,7 @@ Get images for cameras near specific searched addresses (configurable limit 1-8)
 - Longitude: Float between -74.2591 and -73.7004 (NYC bounds)
 
 **Camera Addresses:**
-- Format: `Street_Name_and_Cross_Street`
-- Example: `BROADWAY_at_42ND_ST`
+- Examples: `Grand_St_Bowery, Lexington_Ave_34_St, 1_Ave_84_St, Roosevelt_Ave_Baxter_Ave`
 
 **Images:**
 - Format: Base64-encoded JPEG
