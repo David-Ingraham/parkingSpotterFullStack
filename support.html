@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Spotter - Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            background-color: #0f001a;
+            color: #e0b3ff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(46, 0, 62, 0.8);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 140, 66, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background: rgba(255, 140, 66, 0.2);
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 3em;
+            font-weight: 900;
+            color: #FFB366;
+            margin-bottom: 10px;
+            text-shadow: -2px 3px 8px #8B5FBF;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transform: skewX(-5deg);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tagline {
+            color: #e0b3ff;
+            font-size: 1.2em;
+            font-family: 'Menlo', monospace;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 28px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(255, 140, 66, 0.5);
+        }
+        
+        .section-primary {
+            background: #2a0040;
+            border: 2px solid rgba(255, 140, 66, 0.4);
+        }
+        
+        .section-secondary {
+            background: #1a002b;
+            border: 2px solid rgba(255, 140, 66, 0.4);
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background: rgba(255, 140, 66, 0.2);
+            z-index: 1;
+        }
+        
+        .section h2 {
+            color: #FFB366;
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: -1px 2px 6px #8B5FBF;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transform: skewX(-3deg);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section h3 {
+            color: #FFB366;
+            font-size: 1.3em;
+            font-weight: 900;
+            margin: 20px 0 10px 0;
+            text-shadow: -1px 2px 6px #8B5FBF;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transform: skewX(-2deg);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section p {
+            color: #e0b3ff;
+            font-family: 'Menlo', monospace;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 140, 66, 0.3);
+            color: #e0b3ff;
+            font-family: 'Menlo', monospace;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .feature-list li:before {
+            content: "✓ ";
+            color: #FF8C42;
+            font-weight: bold;
+            text-shadow: 0 0 5px #FF8C42;
+        }
+        
+        .contact-info {
+            background: rgba(46, 0, 62, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 140, 66, 0.4);
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-info h3 {
+            margin-top: 0;
+            color: #FFB366;
+        }
+        
+        .contact-info a {
+            color: #FF8C42;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #FFB366;
+            text-shadow: 0 0 8px #FF8C42;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px 20px;
+            background: rgba(46, 0, 62, 0.8);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 140, 66, 0.4);
+            color: #e0b3ff;
+            font-family: 'Menlo', monospace;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF8C42, #FFB366);
+            color: #1a0025;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 12px;
+            margin: 10px 8px;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+            border: 2px solid rgba(255, 140, 66, 0.6);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+            background: linear-gradient(135deg, #FFB366, #FF8C42);
+        }
+        
+        .icon {
+            font-size: 1.5em;
+            margin-right: 8px;
+            text-shadow: 0 0 5px rgba(255, 140, 66, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 2.2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .button {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🚗 Parking Spotter</div>
+            <div class="tagline">Find NYC street parking with live traffic cameras</div>
+        </div>
+
+        <div class="section section-primary">
+            <h2><span class="icon">📱</span>About Parking Spotter</h2>
+            <p>Parking Spotter helps you find available street parking in New York City by showing you live traffic camera feeds from nearby locations. See what's happening on the street before you drive there!</p>
+            
+            <h3>Key Features:</h3>
+            <ul class="feature-list">
+                <li>Live traffic camera feeds from NYC DOT</li>
+                <li>Location-based camera search</li>
+                <li>Address-based camera lookup</li>
+                <li>View 1-8 nearby cameras simultaneously</li>
+                <li>No account required - instant access</li>
+                <li>Privacy-focused - no personal data stored</li>
+            </ul>
+        </div>
+
+        <div class="section section-secondary">
+            <h2><span class="icon">❓</span>Frequently Asked Questions</h2>
+            
+            <h3>How does Parking Spotter work?</h3>
+            <p>Simply allow location access or search for an NYC address, select how many cameras you want to see (1-8), and view live camera feeds showing current street conditions to find available parking spots.</p>
+            
+            <h3>Where does the camera data come from?</h3>
+            <p>We use public NYC Department of Transportation (DOT) traffic camera data. This app works exclusively in New York City.</p>
+            
+            <h3>Do you store my personal information?</h3>
+            <p>No. We're privacy-focused and don't collect or store any personal data. Location is only used to find nearby cameras.</p>
+            
+            <h3>Is the app free to use?</h3>
+            <p>Currently, Parking Spotter is free to use. We may introduce premium features in the future to support continued development.</p>
+        </div>
+
+        <div class="section section-primary">
+            <h2><span class="icon">🐛</span>Report Issues</h2>
+            <p>Found a bug or have a feature request? We'd love to hear from you!</p>
+            
+            <div class="contact-info">
+                <h3><span class="icon">📧</span>Contact Information</h3>
+                <p><strong>Email:</strong> <a href="mailto:support@parkingspotter.app">support@parkingspotter.app</a></p>
+                <p><strong>GitHub Issues:</strong> <a href="https://github.com/yourusername/parkingSpotterFullStack/issues" target="_blank">Report on GitHub</a></p>
+                <p><strong>App Store Review:</strong> Leave a review in the App Store to help other users!</p>
+            </div>
+        </div>
+
+        <div class="section section-secondary">
+            <h2><span class="icon">🔧</span>Troubleshooting</h2>
+            
+            <h3>Camera feeds not loading?</h3>
+            <p>• Check your internet connection<br>
+            • Ensure you're in NYC or searching for an NYC address<br>
+            • Try refreshing the app</p>
+            
+            <h3>Location not working?</h3>
+            <p>• Make sure location services are enabled<br>
+            • Grant location permission when prompted<br>
+            • Try searching for a specific address instead</p>
+            
+            <h3>App crashes or freezes?</h3>
+            <p>• Force close and restart the app<br>
+            • Update to the latest version<br>
+            • Contact support if the issue persists</p>
+        </div>
+
+        <div class="section section-primary">
+            <h2><span class="icon">📋</span>Legal & Privacy</h2>
+            <p>
+                <a href="privacy-policy.html" class="button">Privacy Policy</a>
+                <a href="LICENSE" class="button">License</a>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 David Ingraham. Parking Spotter is not affiliated with NYC DOT.</p>
+            <p>Made with ❤️ for NYC drivers</p>
+        </div>
+    </div>
+</body>
+</html> 
