@@ -1,4 +1,38 @@
 {
-  "name": "ParkingSpotter",
-  "displayName": "Parking Spotter"
+  "expo": {
+    "name": "ParkingSpotter",
+    "slug": "parking-spotter-ios",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assests/appstore.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assests/appstore.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.davidingraham.parkingspotter"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assests/playstore.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.davidingraham.parkingspotter"
+    },
+    "web": {
+      "favicon": "./assests/appstore.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "94f2cd14-756f-4773-92c1-dd05f97b2311"
+      }
+    }
+  }
 }
+
