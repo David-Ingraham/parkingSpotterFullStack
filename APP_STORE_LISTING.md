@@ -10,7 +10,7 @@
 
 ### App Name (30 characters max)
 ```
-Parking Spotter
+Parking Spotter NYC
 ```
 *Character count: 15*
 

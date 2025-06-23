@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Alert, Platform, PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import { BACKEND_URL } from '@env';
+import axios from 'axios';
+import { API_CONFIG } from '../config';
 
-const SERVER_URL = `${BACKEND_URL}/fiveNearest`;
+const SERVER_URL = `${API_CONFIG.baseUrl}/fiveNearest`;
 
 // NYC boundary coordinates
 const NYC_BOUNDS = {

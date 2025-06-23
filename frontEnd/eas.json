@@ -12,7 +12,10 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "BACKEND_URL": "https://parkingspotterbackend.onrender.com"
+      }
     }
   },
   "submit": {
