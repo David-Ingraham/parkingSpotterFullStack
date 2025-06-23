@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Platform } from 'react-native';
 import { AddressAutocomplete } from '../components/AddressAutocomplete';
-import { BACKEND_URL } from '@env';
+import { API_CONFIG } from '../config';
 
 type CameraImage = {
   address: string;
@@ -24,7 +24,7 @@ export function DirectSearchScreen() {
     setImages([]);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/search_cameras`, {
+      const response = await fetch(`${API_CONFIG.baseUrl}/search_cameras`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

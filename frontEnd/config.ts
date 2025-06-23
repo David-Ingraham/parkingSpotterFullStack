@@ -2,7 +2,7 @@ import { BACKEND_URL } from '@env';
 
 // Force HTTPS in production
 const enforceHttps = (url: string): string => {
-  if (!__DEV__ && url.startsWith('http://')) {
+  if (!__DEV__ && url && url.startsWith('http://')) {
     return url.replace('http://', 'https://');
   }
   return url;
@@ -14,8 +14,8 @@ const getBackendUrl = (): string => {
     // In development, use the environment variable or fallback to emulator URL
     return BACKEND_URL || 'http://10.0.2.2:8000';
   } else {
-    // In production, use the environment variable (must be set)
-    return enforceHttps(BACKEND_URL || 'https://your-production-domain.com');
+    // In production, use the environment variable with a proper fallback
+    return enforceHttps(BACKEND_URL || 'https://parkingspotterbackend.onrender.com');
   }
 };
 
