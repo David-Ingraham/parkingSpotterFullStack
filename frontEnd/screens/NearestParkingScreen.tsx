@@ -97,11 +97,11 @@ export function NearestParkingScreen() {
       {photos.map((photo, index) => (
         <View key={photo.address} style={styles.photoCard}>
           <Text style={styles.photoLabel}>{photo.address.replace(/_/g, " ")}</Text>
-          <Image 
+            <Image 
             source={{ uri: photo.uri }} 
-            style={styles.photo} 
-          />
-        </View>
+              style={styles.photo} 
+            />
+          </View>
       ))}
     </ScrollView>
   );
