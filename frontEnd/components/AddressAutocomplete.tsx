@@ -14,10 +14,15 @@ const typedCameraLocations = cameraLocations as CameraLocations;
 
 interface AddressAutocompleteProps {
   onSelectAddress: (address: string) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
-export function AddressAutocomplete({ onSelectAddress }: AddressAutocompleteProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+export function AddressAutocomplete({ 
+  onSelectAddress,
+  searchQuery,
+  setSearchQuery,
+}: AddressAutocompleteProps) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Convert underscore format to display format

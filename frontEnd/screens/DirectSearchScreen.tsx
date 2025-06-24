@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Platform, KeyboardAvoidingView } from 'react-native';
+import { useHeaderHeight } from '@react-navigation/elements';
 import { AddressAutocomplete } from '../components/AddressAutocomplete';
 import { API_CONFIG } from '../config';
 
@@ -10,10 +11,12 @@ type CameraImage = {
 
 export function DirectSearchScreen() {
   const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState<CameraImage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [numCams, setNumCams] = useState(5);
+  const headerHeight = useHeaderHeight();
 
   const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -54,60 +57,81 @@ export function DirectSearchScreen() {
   };
 
   return (
-    <ScrollView style={styles.screenContainer} contentContainerStyle={styles.scrollContent}>
-      <View style={styles.searchContainer}>
-        <Text style={styles.title}>Search by Address</Text>
+    <KeyboardAvoidingView
+      style={[styles.screenContainer, { paddingTop: headerHeight }]}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0} 
+    >
+      <ScrollView 
+        style={{ flex: 1 }} 
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.searchContainer}>
+          <Text style={styles.title}>Search by Address</Text>
+          
+          <View style={styles.controlsContainer}>
+            <Text style={styles.selectorLabel}>Number of Cameras: {numCams}</Text>
+            <View style={styles.buttonGrid}>
+              {cameraOptions.map((count) => (
+                <TouchableOpacity
+                  key={count}
+                  style={[
+                    styles.cameraButton,
+                    numCams === count && styles.cameraButtonSelected
+                  ]}
+                  onPress={() => setNumCams(count)}
+                >
+                  <Text style={[
+                    styles.cameraButtonText,
+                    numCams === count && styles.cameraButtonTextSelected
+                  ]}>
+                    {count}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+
+          <AddressAutocomplete
+            onSelectAddress={handleAddressSelect}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={() => handleAddressSelect(searchQuery)}
+            disabled={!searchQuery || isLoading}
+          >
+            <Text style={styles.searchButtonText}>Search</Text>
+          </TouchableOpacity>
+        </View>
         
-        <View style={styles.controlsContainer}>
-          <Text style={styles.selectorLabel}>Number of Cameras: {numCams}</Text>
-          <View style={styles.buttonGrid}>
-            {cameraOptions.map((count) => (
-              <TouchableOpacity
-                key={count}
-                style={[
-                  styles.cameraButton,
-                  numCams === count && styles.cameraButtonSelected
-                ]}
-                onPress={() => setNumCams(count)}
-              >
-                <Text style={[
-                  styles.cameraButtonText,
-                  numCams === count && styles.cameraButtonTextSelected
-                ]}>
-                  {count}
+        {selectedAddress && (
+          <View style={styles.resultContainer}>
+            <Text style={styles.selectedText}>
+              Nearby cameras around: {selectedAddress.replace(/_/g, ' ')}
+            </Text>
+            
+            {isLoading && <ActivityIndicator style={styles.loader} size="large" />}
+            
+            {error && <Text style={styles.errorText}>{error}</Text>}
+            
+            {images.map((image, index) => (
+              <View key={image.address} style={styles.photoCard}>
+                <Text style={styles.photoLabel}>
+                  {index === 0 ? '📍 ' : ''}{image.address.replace(/_/g, " ")}
                 </Text>
-              </TouchableOpacity>
+                <Image 
+                  source={{ uri: image.url }} 
+                  style={styles.photo} 
+                />
+              </View>
             ))}
           </View>
-        </View>
-
-        <AddressAutocomplete onSelectAddress={handleAddressSelect} />
-      </View>
-      
-      {selectedAddress && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.selectedText}>
-            Nearby cameras around: {selectedAddress.replace(/_/g, ' ')}
-          </Text>
-          
-          {isLoading && <ActivityIndicator style={styles.loader} size="large" />}
-          
-          {error && <Text style={styles.errorText}>{error}</Text>}
-          
-          {images.map((image, index) => (
-            <View key={image.address} style={styles.photoCard}>
-              <Text style={styles.photoLabel}>
-                {index === 0 ? '📍 ' : ''}{image.address.replace(/_/g, " ")}
-              </Text>
-              <Image 
-                source={{ uri: image.url }} 
-                style={styles.photo} 
-              />
-            </View>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -203,6 +227,18 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.3)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
+  },
+  searchButton: {
+    backgroundColor: '#FF8C42',
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  searchButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   resultContainer: {
     flex: 1,

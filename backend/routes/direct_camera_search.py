@@ -82,6 +82,9 @@ def search_cameras():
                 for camera_addr, camera_info in nearby_cameras.items():
                     if camera_addr not in all_nearby_cameras:
                         all_nearby_cameras[camera_addr] = camera_info
+            
+
+
             else:
                 print(f"[INFO] No cameras found near geocoded location for {addr}")
 
@@ -120,5 +123,7 @@ def search_cameras():
 
     if not output:
         return jsonify(error="No valid camera images could be retrieved"), 404
+    
+    print(output)
 
     return jsonify(images=output) 
