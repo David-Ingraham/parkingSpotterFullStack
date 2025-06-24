@@ -5,6 +5,7 @@ import json
 import uuid
 from flask import Blueprint, request, jsonify
 from PIL import Image
+import googlemaps
 from helpers.fetch_image import fetch_and_save_image
 from helpers.get_nearby_cameras import find_nearby_cameras
 from routes.five_nearest import cleanup_old_dirs
@@ -14,6 +15,7 @@ load_dotenv()
 
 bp = Blueprint('direct_camera_search', __name__)
 BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000")  # Default to localhost if not set
+GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
 
 
@@ -42,6 +44,10 @@ def search_cameras():
     if not isinstance(addresses, list) or len(addresses) == 0:
         return jsonify(error="Must provide at least one address"), 400
 
+    if not GOOGLE_MAPS_API_KEY:
+        return jsonify(error="Google Maps API key not configured on server"), 500
+    gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
+
     # Load camera data
     with open("camera_id_lat_lng_wiped.json", "r") as f:
         camera_data = json.load(f)
@@ -60,23 +66,28 @@ def search_cameras():
     # For each searched address, find nearby cameras around its location
     for addr in addresses:
         try:
-            if addr in camera_data:
-                # Get the coordinates of the searched camera
-                search_lat = camera_data[addr]["latitude"]
-                search_lng = camera_data[addr]["longitude"]
-                
-                if search_lat is not None and search_lng is not None:
-                    # Find nearby cameras around this location
-                    nearby_cameras = find_nearby_cameras(search_lat, search_lng, "camera_id_lat_lng_wiped.json")
-                    if nearby_cameras:
-                        # Merge with existing cameras (avoid duplicates)
-                        for camera_addr, camera_info in nearby_cameras.items():
-                            if camera_addr not in all_nearby_cameras:
-                                all_nearby_cameras[camera_addr] = camera_info
-                else:
-                    print(f"[WARNING] No coordinates found for {addr}")
+            # Geocode the address to get its latitude and longitude
+            geocode_result = gmaps.geocode(addr)
+            if not geocode_result:
+                print(f"[WARNING] Could not geocode address: {addr}")
+                continue
+
+            search_lat = geocode_result[0]['geometry']['location']['lat']
+            search_lng = geocode_result[0]['geometry']['location']['lng']
+
+            # Find nearby cameras around this geocoded location
+            nearby_cameras = find_nearby_cameras(search_lat, search_lng, "camera_id_lat_lng_wiped.json")
+            if nearby_cameras:
+                # Merge with existing cameras (avoid duplicates)
+                for camera_addr, camera_info in nearby_cameras.items():
+                    if camera_addr not in all_nearby_cameras:
+                        all_nearby_cameras[camera_addr] = camera_info
+            
+
+
             else:
-                print(f"[WARNING] Address {addr} not found in camera data")
+                print(f"[INFO] No cameras found near geocoded location for {addr}")
+
         except Exception as e:
             print(f"[ERROR] Failed to process {addr}: {e}")
 
@@ -112,5 +123,7 @@ def search_cameras():
 
     if not output:
         return jsonify(error="No valid camera images could be retrieved"), 404
+    
+    print(output)
 
     return jsonify(images=output) 
