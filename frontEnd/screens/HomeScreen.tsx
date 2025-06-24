@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 type RootStackParamList = {
   Home: undefined;
@@ -9,10 +8,8 @@ type RootStackParamList = {
   NearestParking: undefined;
 };
 
-type NavigationProp = StackNavigationProp<RootStackParamList>;
-
 export function HomeScreen() {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   
   return (
     <View style={styles.homeContainer}>
@@ -42,7 +39,7 @@ export function HomeScreen() {
             <Text style={styles.cardIcon}>📍</Text>
             <Text style={styles.cardTitle}>Find Nearest Parking</Text>
             <Text style={styles.cardDescription}>
-              Locate parking cameras near your current location
+              Locate street cameras near your current location
             </Text>
           </View>
           <View style={styles.cardGlow} />

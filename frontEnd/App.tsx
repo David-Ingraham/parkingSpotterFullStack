@@ -86,14 +86,15 @@ export default function App() {
               name="Home" 
               component={HomeScreen}
               options={{ 
-                headerTitle: () => <GradientHeaderTitle title="Parking Spotter" />
+                headerShown: false
               }}
             />
             <Stack.Screen 
               name="DirectSearch" 
               component={DirectSearchScreen}
               options={{ 
-                headerTitle: () => <GradientHeaderTitle title="Search Cameras" />
+                headerTitle: '',
+                headerTransparent: true,
               }}
             />
             <Stack.Screen 

@@ -1,13 +1,17 @@
-add fucnitonlaity for users to get nearby cameras nearby to the one they selected.
-
-togleable for how many cameras they want 
-
-clean up test phtots before you push to github 
 
 
-app icon needs to be fixed 
+Week 1-2: Basic car counting
+Integrate pre-trained car detection model
+Count cars per camera image
+Store counts with timestamps
+Week 2-3: Historical baselines
+Collect data for typical car counts by time/day
+Build simple anomaly detection (current vs. historical)
+Week 3-4: Gridlock detection
+Track car positions between frames
+Flag cars stationary >3 minutes
+Create gridlock alerts
 
-better type validation for incoming data on backedn
 
 ./
 

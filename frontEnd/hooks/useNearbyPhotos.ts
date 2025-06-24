@@ -112,9 +112,16 @@ export function useNearbyPhotos(numCams: number = 5) {
     setPhotos([]);
 
     try {
-      const permission = await askLocationPermission();
-      if (!permission) {
-        throw new Error('Location permission denied');
+      if (Platform.OS === 'ios') {
+        const status = await Geolocation.requestAuthorization('whenInUse');
+        if (status !== 'granted') {
+          throw new Error('Location permission denied');
+        }
+      } else if (Platform.OS === 'android') {
+        const permission = await askLocationPermission();
+        if (!permission) {
+          throw new Error('Location permission denied');
+        }
       }
 
       const { lat, lng } = await getCurrentPosition();
