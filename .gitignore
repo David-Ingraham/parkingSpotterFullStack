@@ -13,3 +13,13 @@ backend/data_collection/*.pyo
 backend/data_collection/venv/
 backend/data_collection/env/
 modelTesting/test_images/
+modelTesting/yolov8x.pt
+modelTesting/yolov8l.pt
+modelTesting/fasterrcnn.pt
+modelTesting/retinanet.pt
+modelTesting/ssd.pt
+modelTesting/results.txt
+modelTesting/venv/
+modelTesting/env/
+modelTesting/__pycache__/
+modelTesting/*.pyc
