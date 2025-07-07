@@ -259,6 +259,17 @@ For support, create an issue on GitHub.
 - React Native community for excellent documentation
 - Open source contributors
 
+## Model Setup
+After cloning the repository, you'll need to download the YOLO models:
+
+1. Create a `modelTesting` directory if it doesn't exist
+2. Download the models from Ultralytics:
+   - YOLOv8x: `pip install ultralytics && yolo download model yolov8x.pt`
+   - YOLOv8l: `pip install ultralytics && yolo download model yolov8l.pt`
+3. Move the downloaded .pt files to the `modelTesting` directory
+
+Note: Model files are not included in the repository due to their size.
+
 ---
 
 **A privacy-respecting parking solution for NYC drivers** 

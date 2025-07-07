@@ -23,3 +23,7 @@ modelTesting/venv/
 modelTesting/env/
 modelTesting/__pycache__/
 modelTesting/*.pyc
+
+# Model files
+*.pt
+modelTesting/*.pt
