@@ -15,4 +15,4 @@ googlemaps==4.10.0
 Werkzeug==3.0.1  # Required for secure file handling
 typing-extensions==4.9.0  # Required for type hints
 flask-limiter==3.5.0  # Rate limiting
-flask-talisman==1.1.0  # HTTPS enforcement 
+flask-talisman==1.1.0  # HTTPS enforcement

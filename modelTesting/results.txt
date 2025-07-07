@@ -1,0 +1,1017 @@
+MODEL EVALUATION RESULTS
+==================================================
+
+
+Batch: batch_1
+==================================================
+
+=== 7_Ave_145_St (2025-07-07 11:24:00) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/61890a52-c90e-41a1-b032-d5c6f39746d9/image
+
+Vehicle Counts:
+yolov8x   : 11 cars (0.50 conf), 1 trucks (0.64 conf)
+yolov8l   : 9 cars (0.50 conf), 1 trucks (0.38 conf)
+fasterrcnn: 11 cars (0.87 conf), 1 trucks (0.70 conf)
+retinanet : 73 cars (0.23 conf), 21 trucks (0.16 conf)
+ssd       : 1 cars (0.54 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 1320ms
+            Memory used: 0.0GB
+            FPS: 0.8
+yolov8l   :
+            Process time: 1019ms
+            Memory used: 0.0GB
+            FPS: 1.0
+fasterrcnn:
+            Process time: 3329ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2100ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 70ms
+            Memory used: 0.0GB
+            FPS: 14.3
+
+--------------------------------------------------
+=== Kissena_Blvd_Holly_Ave (2025-07-07 11:23:58) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/ed8fac76-2128-4099-8dfd-80144bd059d4/image
+
+Vehicle Counts:
+yolov8x   : 8 cars (0.57 conf), 2 trucks (0.63 conf)
+yolov8l   : 8 cars (0.64 conf), 1 trucks (0.78 conf)
+fasterrcnn: 8 cars (0.83 conf), 1 trucks (0.86 conf)
+retinanet : 112 cars (0.14 conf), 21 trucks (0.12 conf)
+ssd       : 1 cars (0.89 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 695ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 519ms
+            Memory used: 0.0GB
+            FPS: 1.9
+fasterrcnn:
+            Process time: 3518ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2929ms
+            Memory used: 0.0GB
+            FPS: 0.3
+ssd       :
+            Process time: 44ms
+            Memory used: 0.0GB
+            FPS: 23.0
+
+--------------------------------------------------
+=== Lexington_Ave_42_St (2025-07-07 11:23:57) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/1546f761-039c-4b5c-af5e-75c83c9f603f/image
+
+Vehicle Counts:
+yolov8x   : 9 cars (0.54 conf)
+yolov8l   : 9 cars (0.61 conf), 1 trucks (0.38 conf)
+fasterrcnn: 10 cars (0.85 conf), 3 trucks (0.65 conf)
+retinanet : 72 cars (0.24 conf), 39 trucks (0.13 conf)
+ssd       : 1 cars (0.64 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 698ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 537ms
+            Memory used: 0.0GB
+            FPS: 1.9
+fasterrcnn:
+            Process time: 3587ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2081ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 57ms
+            Memory used: 0.0GB
+            FPS: 17.7
+
+--------------------------------------------------
+=== Northern_Blvd_Union_St (2025-07-07 11:24:01) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/e6ba1d11-d27e-441f-b385-a8ae85a3fc74/image
+
+Vehicle Counts:
+yolov8x   : 4 cars (0.72 conf), 3 trucks (0.57 conf)
+yolov8l   : 6 cars (0.61 conf), 2 trucks (0.55 conf)
+fasterrcnn: 5 cars (0.93 conf), 1 trucks (0.90 conf)
+retinanet : 54 cars (0.16 conf), 14 trucks (0.17 conf)
+ssd       : 1 cars (0.53 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 660ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 505ms
+            Memory used: 0.0GB
+            FPS: 2.0
+fasterrcnn:
+            Process time: 3593ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2487ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 67ms
+            Memory used: 0.0GB
+            FPS: 14.9
+
+--------------------------------------------------
+=== Northern_Blvd_Utopia_Pkwy (2025-07-07 11:23:56) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/d05b98ae-f2a7-4c26-8238-754081877484/image
+
+Vehicle Counts:
+yolov8x   : 5 cars (0.74 conf), 2 trucks (0.64 conf)
+yolov8l   : 7 cars (0.62 conf), 1 trucks (0.80 conf)
+fasterrcnn: 10 cars (0.88 conf), 2 trucks (0.76 conf)
+retinanet : 43 cars (0.23 conf), 29 trucks (0.15 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 798ms
+            Memory used: 0.0GB
+            FPS: 1.3
+yolov8l   :
+            Process time: 515ms
+            Memory used: 0.0GB
+            FPS: 1.9
+fasterrcnn:
+            Process time: 3785ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2429ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 57ms
+            Memory used: 0.0GB
+            FPS: 17.5
+
+--------------------------------------------------
+
+Batch: batch_2
+==================================================
+
+=== 9_Ave_W_39_St (2025-07-07 11:24:02) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/9e694610-60f1-4939-a1f9-1679e6408f27/image
+
+Vehicle Counts:
+yolov8x   : 5 cars (0.58 conf)
+yolov8l   : 4 cars (0.70 conf)
+fasterrcnn: 12 cars (0.79 conf)
+retinanet : 94 cars (0.16 conf), 17 trucks (0.12 conf)
+ssd       : 1 cars (0.61 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 837ms
+            Memory used: 0.0GB
+            FPS: 1.2
+yolov8l   :
+            Process time: 512ms
+            Memory used: 0.0GB
+            FPS: 2.0
+fasterrcnn:
+            Process time: 3789ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2418ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 52ms
+            Memory used: 0.0GB
+            FPS: 19.2
+
+--------------------------------------------------
+=== Amsterdam_Ave_125_St (2025-07-07 11:24:03) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/566bce47-4390-4ff3-94ab-7a0ca2989163/image
+
+Vehicle Counts:
+yolov8x   : 2 cars (0.62 conf), 5 trucks (0.55 conf)
+yolov8l   : 2 cars (0.58 conf), 4 trucks (0.56 conf)
+fasterrcnn: 5 cars (0.69 conf), 2 trucks (0.88 conf)
+retinanet : 57 cars (0.17 conf), 29 trucks (0.16 conf)
+ssd       : 1 trucks (0.83 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 641ms
+            Memory used: 0.0GB
+            FPS: 1.6
+yolov8l   :
+            Process time: 445ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3273ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2116ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 46ms
+            Memory used: 0.0GB
+            FPS: 21.9
+
+--------------------------------------------------
+=== Grand_Concourse_East_Kingsbridge (2025-07-07 11:24:05) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/37d4da40-86d6-4185-bb0f-5b52b4a55c72/image
+
+Vehicle Counts:
+yolov8x   : 13 cars (0.50 conf), 1 trucks (0.89 conf)
+yolov8l   : 10 cars (0.53 conf), 1 trucks (0.73 conf)
+fasterrcnn: 18 cars (0.81 conf), 1 trucks (0.94 conf)
+retinanet : 46 cars (0.30 conf), 20 trucks (0.18 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 649ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 625ms
+            Memory used: 0.0GB
+            FPS: 1.6
+fasterrcnn:
+            Process time: 3355ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2111ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 51ms
+            Memory used: 0.0GB
+            FPS: 19.6
+
+--------------------------------------------------
+=== Grand_St_Broadway (2025-07-07 11:24:06) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/63e79f0b-7dea-4c8e-864c-f3315f9cc62c/image
+
+Vehicle Counts:
+yolov8x   : 6 cars (0.49 conf)
+yolov8l   : 3 cars (0.49 conf)
+fasterrcnn: 1 trucks (0.54 conf)
+retinanet : 35 cars (0.09 conf), 19 trucks (0.10 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 651ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 439ms
+            Memory used: 0.0GB
+            FPS: 2.3
+fasterrcnn:
+            Process time: 3227ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2150ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 48ms
+            Memory used: 0.0GB
+            FPS: 20.7
+
+--------------------------------------------------
+=== Narrows_Rd_South_Hylan_Blvd (2025-07-07 11:24:04) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/bfcd953c-3faf-48ea-a49a-848c706399b6/image
+
+Vehicle Counts:
+yolov8x   : 5 cars (0.62 conf)
+yolov8l   : 5 cars (0.64 conf)
+fasterrcnn: 6 cars (0.84 conf), 2 trucks (0.60 conf)
+retinanet : 78 cars (0.14 conf), 21 trucks (0.13 conf)
+ssd       : 1 cars (0.62 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 659ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 441ms
+            Memory used: 0.0GB
+            FPS: 2.3
+fasterrcnn:
+            Process time: 3356ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2415ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 62ms
+            Memory used: 0.0GB
+            FPS: 16.1
+
+--------------------------------------------------
+
+Batch: batch_3
+==================================================
+
+=== 1_Ave_86_St (2025-07-07 11:24:07) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/f3c6fe0c-75c8-4ce9-ad9a-5b7eb8e9087e/image
+
+Vehicle Counts:
+yolov8x   : 3 cars (0.32 conf), 2 trucks (0.59 conf)
+yolov8l   : 1 cars (0.32 conf), 2 trucks (0.45 conf)
+fasterrcnn: 2 cars (0.56 conf), 2 trucks (0.72 conf)
+retinanet : 41 cars (0.11 conf), 12 trucks (0.11 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 841ms
+            Memory used: 0.0GB
+            FPS: 1.2
+yolov8l   :
+            Process time: 634ms
+            Memory used: 0.0GB
+            FPS: 1.6
+fasterrcnn:
+            Process time: 4220ms
+            Memory used: 0.0GB
+            FPS: 0.2
+retinanet :
+            Process time: 2362ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 64ms
+            Memory used: 0.0GB
+            FPS: 15.5
+
+--------------------------------------------------
+=== 3_AVE_76_St (2025-07-07 11:24:10) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/3df06012-4c10-46e1-81d0-55405342e8df/image
+
+Vehicle Counts:
+yolov8x   : 6 cars (0.64 conf), 4 trucks (0.64 conf)
+yolov8l   : 5 cars (0.64 conf), 4 trucks (0.61 conf)
+fasterrcnn: 8 cars (0.85 conf), 2 trucks (0.83 conf)
+retinanet : 60 cars (0.21 conf), 32 trucks (0.20 conf)
+ssd       : 3 cars (0.84 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 723ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 506ms
+            Memory used: 0.0GB
+            FPS: 2.0
+fasterrcnn:
+            Process time: 3493ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2115ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 53ms
+            Memory used: 0.0GB
+            FPS: 18.9
+
+--------------------------------------------------
+=== Fort_Hamilton_Pkwy_60_St (2025-07-07 11:24:11) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/ddc62c2f-dab2-48e0-918e-742e62e78ec1/image
+
+Vehicle Counts:
+yolov8x   : 9 cars (0.69 conf), 2 trucks (0.75 conf)
+yolov8l   : 8 cars (0.66 conf), 1 trucks (0.71 conf)
+fasterrcnn: 16 cars (0.75 conf), 2 trucks (0.76 conf)
+retinanet : 117 cars (0.19 conf), 31 trucks (0.15 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 694ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 465ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3518ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2170ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 42ms
+            Memory used: 0.0GB
+            FPS: 23.6
+
+--------------------------------------------------
+=== Gatling_Pl_86_St_-_186_2 (2025-07-07 11:24:09) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/a4fa36ac-f546-4ec1-b579-135f0ab204de/image
+
+Vehicle Counts:
+yolov8x   : 4 cars (0.67 conf), 2 trucks (0.59 conf)
+yolov8l   : 6 cars (0.64 conf), 3 trucks (0.56 conf)
+fasterrcnn: 7 cars (0.82 conf), 1 trucks (0.97 conf)
+retinanet : 69 cars (0.20 conf), 19 trucks (0.15 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 668ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 456ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3302ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2275ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 54ms
+            Memory used: 0.0GB
+            FPS: 18.6
+
+--------------------------------------------------
+=== School_Rd_Bay_St (2025-07-07 11:24:08) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/fbfe89f1-6410-4189-bbeb-7e5fce28bf82/image
+
+Vehicle Counts:
+yolov8x   : 5 cars (0.52 conf), 3 trucks (0.54 conf)
+yolov8l   : 4 cars (0.56 conf), 2 trucks (0.63 conf)
+fasterrcnn: 8 cars (0.81 conf), 1 trucks (0.95 conf)
+retinanet : 94 cars (0.15 conf), 19 trucks (0.19 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 768ms
+            Memory used: 0.0GB
+            FPS: 1.3
+yolov8l   :
+            Process time: 577ms
+            Memory used: 0.0GB
+            FPS: 1.7
+fasterrcnn:
+            Process time: 3544ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2156ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 41ms
+            Memory used: 0.0GB
+            FPS: 24.2
+
+--------------------------------------------------
+
+Batch: batch_4
+==================================================
+
+=== 2_Ave_42_St (2025-07-07 11:24:12) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/8f692f55-8118-423b-8bcb-1ea49eaf442b/image
+
+Vehicle Counts:
+yolov8x   : 8 cars (0.62 conf), 3 trucks (0.53 conf)
+yolov8l   : 6 cars (0.59 conf), 4 trucks (0.56 conf)
+fasterrcnn: 9 cars (0.74 conf), 4 trucks (0.75 conf)
+retinanet : 43 cars (0.25 conf), 30 trucks (0.20 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 666ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 456ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3529ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2315ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 51ms
+            Memory used: 0.0GB
+            FPS: 19.6
+
+--------------------------------------------------
+=== 7_Ave_9_St (2025-07-07 11:24:14) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/089d8066-4e5e-4549-9496-a5f4ffb56ef5/image
+
+Vehicle Counts:
+yolov8x   : 14 cars (0.64 conf), 1 trucks (0.92 conf)
+yolov8l   : 14 cars (0.57 conf), 1 trucks (0.88 conf)
+fasterrcnn: 18 cars (0.86 conf), 2 trucks (0.76 conf)
+retinanet : 59 cars (0.26 conf), 27 trucks (0.17 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 661ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 449ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3440ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2117ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 51ms
+            Memory used: 0.0GB
+            FPS: 19.5
+
+--------------------------------------------------
+=== Allen_St_Delancey_St_(B) (2025-07-07 11:24:17) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/a249b3ee-bde9-4d6d-9a18-9cd2108d2eb0/image
+
+Vehicle Counts:
+yolov8x   : 3 cars (0.56 conf), 1 trucks (0.73 conf)
+yolov8l   : 3 cars (0.58 conf), 1 trucks (0.69 conf)
+fasterrcnn: 6 cars (0.84 conf), 2 trucks (0.59 conf)
+retinanet : 46 cars (0.16 conf), 10 trucks (0.14 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 669ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 467ms
+            Memory used: 0.0GB
+            FPS: 2.1
+fasterrcnn:
+            Process time: 3288ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2129ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 52ms
+            Memory used: 0.0GB
+            FPS: 19.1
+
+--------------------------------------------------
+=== Gatling_Pl_86_St_-_186_2 (2025-07-07 11:24:13) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/a4fa36ac-f546-4ec1-b579-135f0ab204de/image
+
+Vehicle Counts:
+yolov8x   : 4 cars (0.67 conf), 2 trucks (0.59 conf)
+yolov8l   : 6 cars (0.64 conf), 3 trucks (0.56 conf)
+fasterrcnn: 7 cars (0.82 conf), 1 trucks (0.97 conf)
+retinanet : 69 cars (0.20 conf), 19 trucks (0.15 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 768ms
+            Memory used: 0.0GB
+            FPS: 1.3
+yolov8l   :
+            Process time: 507ms
+            Memory used: 0.0GB
+            FPS: 2.0
+fasterrcnn:
+            Process time: 3762ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2534ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 51ms
+            Memory used: 0.0GB
+            FPS: 19.5
+
+--------------------------------------------------
+=== Lexington_Ave_34_St (2025-07-07 11:24:15) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/0b4bd3d3-1741-49b3-87cc-d0960fa5f424/image
+
+Vehicle Counts:
+yolov8x   : 3 cars (0.52 conf)
+yolov8l   : 1 cars (0.56 conf)
+fasterrcnn: 2 cars (0.78 conf)
+retinanet : 45 cars (0.16 conf), 9 trucks (0.19 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 687ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 476ms
+            Memory used: 0.0GB
+            FPS: 2.1
+fasterrcnn:
+            Process time: 3423ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2707ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 52ms
+            Memory used: 0.0GB
+            FPS: 19.4
+
+--------------------------------------------------
+
+Batch: batch_5
+==================================================
+
+=== 10_Ave_W_34_St (2025-07-07 11:24:22) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/2bc8aef2-fc97-47e0-84cd-1efc8ee21bfe/image
+
+Vehicle Counts:
+yolov8x   : 6 cars (0.60 conf), 3 trucks (0.70 conf)
+yolov8l   : 7 cars (0.58 conf), 3 trucks (0.62 conf)
+fasterrcnn: 12 cars (0.80 conf), 2 trucks (0.89 conf)
+retinanet : 63 cars (0.21 conf), 23 trucks (0.18 conf)
+ssd       : 1 cars (0.54 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 749ms
+            Memory used: 0.0GB
+            FPS: 1.3
+yolov8l   :
+            Process time: 617ms
+            Memory used: 0.0GB
+            FPS: 1.6
+fasterrcnn:
+            Process time: 3775ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2613ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 68ms
+            Memory used: 0.0GB
+            FPS: 14.8
+
+--------------------------------------------------
+=== Central_Park_West_100_St (2025-07-07 11:24:18) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/7c9ef8dd-7587-4e39-b486-13ef4c7e5721/image
+
+Vehicle Counts:
+yolov8x   : 3 cars (0.70 conf), 3 trucks (0.57 conf)
+yolov8l   : 4 cars (0.60 conf), 3 trucks (0.50 conf)
+fasterrcnn: 8 cars (0.78 conf), 3 trucks (0.84 conf)
+retinanet : 55 cars (0.17 conf), 15 trucks (0.19 conf)
+ssd       : 1 cars (0.78 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 722ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 496ms
+            Memory used: 0.0GB
+            FPS: 2.0
+fasterrcnn:
+            Process time: 3965ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2444ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 57ms
+            Memory used: 0.0GB
+            FPS: 17.6
+
+--------------------------------------------------
+=== McDonald_Ave_10th_Ave___20th_St (2025-07-07 11:24:20) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/f9608ba1-608f-4dad-a8aa-9a9c1978b363/image
+
+Vehicle Counts:
+yolov8x   : 4 cars (0.56 conf), 1 trucks (0.68 conf)
+yolov8l   : 5 cars (0.54 conf)
+fasterrcnn: 5 cars (0.91 conf)
+retinanet : 80 cars (0.19 conf), 13 trucks (0.19 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 819ms
+            Memory used: 0.0GB
+            FPS: 1.2
+yolov8l   :
+            Process time: 546ms
+            Memory used: 0.0GB
+            FPS: 1.8
+fasterrcnn:
+            Process time: 3558ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2195ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 50ms
+            Memory used: 0.0GB
+            FPS: 20.1
+
+--------------------------------------------------
+=== Park_Ave_79_St (2025-07-07 11:24:19) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/41397b64-d035-4b41-a03e-170fe4103d89/image
+
+Vehicle Counts:
+yolov8x   : 14 cars (0.51 conf), 3 trucks (0.46 conf)
+yolov8l   : 13 cars (0.52 conf), 4 trucks (0.38 conf)
+fasterrcnn: 13 cars (0.78 conf), 1 trucks (0.62 conf)
+retinanet : 69 cars (0.22 conf), 24 trucks (0.17 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 678ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 472ms
+            Memory used: 0.0GB
+            FPS: 2.1
+fasterrcnn:
+            Process time: 3363ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2177ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 52ms
+            Memory used: 0.0GB
+            FPS: 19.4
+
+--------------------------------------------------
+=== Sutton_Pl_58_St (2025-07-07 11:24:21) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/b1d5d592-9e36-478e-bedc-5fb02d836bc3/image
+
+Vehicle Counts:
+yolov8x   : 1 cars (0.43 conf)
+yolov8l   : 1 cars (0.52 conf)
+fasterrcnn: 1 trucks (0.62 conf)
+retinanet : 40 cars (0.10 conf), 14 trucks (0.09 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 681ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 460ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3275ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2224ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 45ms
+            Memory used: 0.0GB
+            FPS: 22.1
+
+--------------------------------------------------
+
+Batch: batch_6
+==================================================
+
+=== 1_Ave_110_St (2025-07-07 11:24:27) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/f2b94b32-fc41-42b6-935d-8330374ca05a/image
+
+Vehicle Counts:
+yolov8x   : 8 cars (0.70 conf), 1 trucks (0.92 conf)
+yolov8l   : 10 cars (0.55 conf), 2 trucks (0.59 conf)
+fasterrcnn: 16 cars (0.72 conf), 1 trucks (0.98 conf)
+retinanet : 95 cars (0.20 conf), 24 trucks (0.19 conf)
+ssd       : 1 trucks (0.63 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 662ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 463ms
+            Memory used: 0.0GB
+            FPS: 2.2
+fasterrcnn:
+            Process time: 3372ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2174ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 50ms
+            Memory used: 0.0GB
+            FPS: 19.9
+
+--------------------------------------------------
+=== Flatlands_Ave_Ralph_Ave (2025-07-07 11:24:23) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/f028f021-adc9-46b9-a18f-813d7b4b2b91/image
+
+Vehicle Counts:
+yolov8x   : 6 cars (0.76 conf)
+yolov8l   : 6 cars (0.74 conf)
+fasterrcnn: 7 cars (0.89 conf)
+retinanet : 56 cars (0.18 conf), 29 trucks (0.13 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 675ms
+            Memory used: 0.0GB
+            FPS: 1.5
+yolov8l   :
+            Process time: 468ms
+            Memory used: 0.0GB
+            FPS: 2.1
+fasterrcnn:
+            Process time: 3541ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2350ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 54ms
+            Memory used: 0.0GB
+            FPS: 18.6
+
+--------------------------------------------------
+=== Metropolitan_Ave_Berry_St (2025-07-07 11:24:25) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/40213626-3ef8-4d63-be77-e1d84ca4d19c/image
+
+Vehicle Counts:
+yolov8x   : 6 cars (0.58 conf)
+yolov8l   : 6 cars (0.50 conf)
+fasterrcnn: 8 cars (0.74 conf)
+retinanet : 74 cars (0.19 conf), 12 trucks (0.14 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 705ms
+            Memory used: 0.0GB
+            FPS: 1.4
+yolov8l   :
+            Process time: 468ms
+            Memory used: 0.0GB
+            FPS: 2.1
+fasterrcnn:
+            Process time: 4343ms
+            Memory used: 0.0GB
+            FPS: 0.2
+retinanet :
+            Process time: 2783ms
+            Memory used: 0.0GB
+            FPS: 0.4
+ssd       :
+            Process time: 54ms
+            Memory used: 0.0GB
+            FPS: 18.7
+
+--------------------------------------------------
+=== Park_Ave_86_St (2025-07-07 11:24:26) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/b7e5959c-1fc5-4fd2-a73e-426127b587b1/image
+
+Vehicle Counts:
+yolov8x   : 8 cars (0.59 conf), 4 trucks (0.67 conf)
+yolov8l   : 12 cars (0.54 conf), 4 trucks (0.60 conf)
+fasterrcnn: 10 cars (0.87 conf), 5 trucks (0.83 conf)
+retinanet : 73 cars (0.21 conf), 31 trucks (0.19 conf)
+ssd       : 3 cars (0.75 conf)
+
+Performance Metrics:
+yolov8x   :
+            Process time: 812ms
+            Memory used: 0.0GB
+            FPS: 1.2
+yolov8l   :
+            Process time: 530ms
+            Memory used: 0.0GB
+            FPS: 1.9
+fasterrcnn:
+            Process time: 3628ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 2209ms
+            Memory used: 0.0GB
+            FPS: 0.5
+ssd       :
+            Process time: 46ms
+            Memory used: 0.0GB
+            FPS: 21.9
+
+--------------------------------------------------
+=== Roosevelt_Ave_Baxter_Ave (2025-07-07 11:24:24) ===
+Camera URL: https://webcams.nyctmc.org/api/cameras/c531c196-3944-4318-8c33-92eb2be792ac/image
+
+Vehicle Counts:
+yolov8x   : 4 cars (0.59 conf), 1 trucks (0.28 conf)
+yolov8l   : 5 cars (0.54 conf), 2 trucks (0.37 conf)
+fasterrcnn: 5 cars (0.85 conf), 1 trucks (0.62 conf)
+retinanet : 39 cars (0.21 conf), 21 trucks (0.16 conf)
+ssd       : 
+
+Performance Metrics:
+yolov8x   :
+            Process time: 787ms
+            Memory used: 0.0GB
+            FPS: 1.3
+yolov8l   :
+            Process time: 527ms
+            Memory used: 0.0GB
+            FPS: 1.9
+fasterrcnn:
+            Process time: 3854ms
+            Memory used: 0.0GB
+            FPS: 0.3
+retinanet :
+            Process time: 3940ms
+            Memory used: 0.0GB
+            FPS: 0.3
+ssd       :
+            Process time: 170ms
+            Memory used: 0.0GB
+            FPS: 5.9
+
+--------------------------------------------------

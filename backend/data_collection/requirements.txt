@@ -1,0 +1,11 @@
+ultralytics==8.3.162
+torch==2.7.1
+torchvision==0.22.1
+opencv-python>=4.9.0
+numpy>=1.24.0
+Pillow>=10.0.0
+requests>=2.31.0
+schedule>=1.2.0
+tqdm>=4.66.0
+python-dotenv>=1.0.0
+werkzeug>=2.0.0 

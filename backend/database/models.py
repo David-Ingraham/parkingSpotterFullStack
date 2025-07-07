@@ -54,6 +54,7 @@ class CameraStatusHistory(Base):
     # Relationships
     camera = relationship('Camera', back_populates='status_history')
 
+
 # Database connection
 def init_db(database_url):
     engine = create_engine(database_url)

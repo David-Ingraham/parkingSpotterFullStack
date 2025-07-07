@@ -1,0 +1,23 @@
+# Database files
+traffic_data.db
+traffic_data.db-journal
+
+# Log files
+logs/
+*.log
+
+# YOLOv8 model files
+*.pt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db 

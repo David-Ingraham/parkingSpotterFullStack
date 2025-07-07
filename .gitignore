@@ -1,2 +1,15 @@
 backend/static/
 notes2.txt
+
+# Traffic Data Collection System
+backend/data_collection/traffic_data.db
+backend/data_collection/traffic_data.db-journal
+backend/data_collection/logs/
+backend/data_collection/*.log
+backend/data_collection/*.pt
+backend/data_collection/__pycache__/
+backend/data_collection/*.pyc
+backend/data_collection/*.pyo
+backend/data_collection/venv/
+backend/data_collection/env/
+modelTesting/test_images/
