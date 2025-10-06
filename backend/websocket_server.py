@@ -35,12 +35,8 @@ def emit_camera_update(camera_address, new_status):
             is_connected=True
         ).all()
         
-        # Update camera status in database
+        # Update camera status in database (already done by watcher service)
         camera = db.query(Camera).filter_by(address=camera_address).first()
-        if camera:
-            camera.last_status = new_status
-            camera.last_checked = datetime.now(timezone.utc)
-            db.commit()
         
         # Emit update to each connected watcher
         for watcher in watchers:
@@ -49,6 +45,7 @@ def emit_camera_update(camera_address, new_status):
                 'status': new_status,
                 'timestamp': datetime.now(timezone.utc).isoformat()
             }, room=watcher.client_id)
+            print(f"Sent update to client {watcher.client_id}: {camera_address} -> {new_status}")
             
     except Exception as e:
         print(f"Error emitting camera update: {e}")

@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, ForeignKey, CheckConstraint
+from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, Float, ForeignKey, CheckConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.sql import func
@@ -9,8 +9,12 @@ class Camera(Base):
     __tablename__ = 'cameras'
     
     address = Column(String(255), primary_key=True)
-    last_status = Column(String(50), default='unknown')
-    last_checked = Column(DateTime(timezone=True), nullable=True)
+    camera_id = Column(String(255), nullable=False)
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
+    last_status = Column(String(50), nullable=True, default=None)
+    parked_cars_confidence = Column(Float, nullable=True, default=None)
+    open_parking_confidence = Column(Float, nullable=True, default=None)
     
     # Relationships
     watchers = relationship('Watcher', back_populates='camera', cascade='all, delete-orphan')
@@ -22,7 +26,7 @@ class Watcher(Base):
     id = Column(Integer, primary_key=True)
     camera_address = Column(String(255), ForeignKey('cameras.address'))
     client_id = Column(String(255), nullable=False)
-    notification_interval = Column(Integer, nullable=False)
+    time_to_live = Column(Integer, nullable=False)
     expires_at = Column(DateTime(timezone=True), nullable=False)
     is_connected = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default='CURRENT_TIMESTAMP')
@@ -33,8 +37,8 @@ class Watcher(Base):
     # Constraints
     __table_args__ = (
         CheckConstraint(
-            'notification_interval >= 10 AND notification_interval <= 180 AND notification_interval % 5 = 0',
-            name='check_notification_interval'
+            'time_to_live >= 10 AND time_to_live <= 180 AND time_to_live % 5 = 0',
+            name='check_time_to_live'
         ),
         # Prevent duplicate watches
         CheckConstraint(
@@ -76,4 +80,11 @@ def get_camera_watchers(session, camera_address):
 def cleanup_expired_watchers(session):
     """Remove expired watchers"""
     session.query(Watcher).filter(Watcher.expires_at <= func.now()).delete()
-    session.commit() 
+    session.commit()
+
+def get_watched_cameras(session):
+    """Get all cameras that have at least one active watcher"""
+    cleanup_expired_watchers(session)
+    return session.query(Camera).join(Watcher).filter(
+        Watcher.expires_at > func.now()
+    ).distinct().all() 

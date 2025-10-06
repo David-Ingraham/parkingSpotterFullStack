@@ -24,12 +24,12 @@ def load_camera_data():
         print(f"Error loading camera data: {e}")
         return {}
 
-def is_valid_notification_interval(interval):
-    """Check if notification interval is valid (10-180 mins, multiple of 5)"""
+def is_valid_time_to_live(ttl):
+    """Check if time to live is valid (10-180 mins, multiple of 5)"""
     return (
-        isinstance(interval, int) and 
-        10 <= interval <= 180 and 
-        interval % 5 == 0
+        isinstance(ttl, int) and 
+        10 <= ttl <= 180 and 
+        ttl % 5 == 0
     )
 
 def cleanup_expired_watches():
@@ -54,23 +54,23 @@ def watch_camera():
     
     try:
         # Validate required fields
-        required_fields = ['address', 'client_id', 'notification_interval']
+        required_fields = ['address', 'client_id', 'timeToLive']
         if not data or not all(field in data for field in required_fields):
             return jsonify({
                 "status": "error",
                 "message": f"Missing required fields. Need: {', '.join(required_fields)}"
             }), 400
         
-        # Validate notification interval
-        if not is_valid_notification_interval(data['notification_interval']):
+        # Validate time to live
+        if not is_valid_time_to_live(data['timeToLive']):
             return jsonify({
                 "status": "error",
-                "message": "Invalid notification interval. Must be between 10-180 minutes and multiple of 5."
+                "message": "Invalid timeToLive. Must be between 10-180 minutes and multiple of 5."
             }), 400
         
-        # Validate camera exists in our JSON data
-        camera_data = load_camera_data()
-        if data['address'] not in camera_data:
+        # Validate camera exists in database
+        camera = db.query(Camera).filter_by(address=data['address']).first()
+        if not camera:
             return jsonify({
                 "status": "error",
                 "message": "Invalid camera address"
@@ -79,17 +79,8 @@ def watch_camera():
         # Clean up expired watches
         cleanup_expired_watches()
         
-        # Get or create camera
-        camera = db.query(Camera).filter_by(address=data['address']).first()
-        if not camera:
-            camera = Camera(
-                address=data['address'],
-                last_status='unknown'
-            )
-            db.add(camera)
-        
-        # Calculate expiration time based on notification interval
-        expires_at = datetime.now(timezone.utc) + timedelta(minutes=data['notification_interval'])
+        # Calculate expiration time based on time to live
+        expires_at = datetime.now(timezone.utc) + timedelta(minutes=data['timeToLive'])
         
         # Get existing watcher or create new one
         watcher = db.query(Watcher).filter_by(
@@ -99,7 +90,7 @@ def watch_camera():
         
         if watcher:
             # Update existing watcher
-            watcher.notification_interval = data['notification_interval']
+            watcher.time_to_live = data['timeToLive']
             watcher.expires_at = expires_at
             message = "Watch parameters updated"
         else:
@@ -107,7 +98,7 @@ def watch_camera():
             watcher = Watcher(
                 camera_address=data['address'],
                 client_id=data['client_id'],
-                notification_interval=data['notification_interval'],
+                time_to_live=data['timeToLive'],
                 expires_at=expires_at
             )
             db.add(watcher)
@@ -194,13 +185,12 @@ def get_watched_cameras():
             result[camera.address] = {
                 "watchers": {
                     w.client_id: {
-                        "notification_interval": w.notification_interval,
-                        "expires_at": int(w.expires_at.timestamp() * 1000),  # Convert to milliseconds
+                        "time_to_live": w.time_to_live,
+                        "expires_at": int(w.expires_at.timestamp() * 1000),
                         "is_connected": w.is_connected
                     } for w in camera.watchers
                 },
-                "last_status": camera.last_status,
-                "last_checked": int(camera.last_checked.timestamp() * 1000) if camera.last_checked else 0
+                "last_status": camera.last_status
             }
         
         return result

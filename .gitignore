@@ -24,6 +24,9 @@ modelTesting/env/
 modelTesting/__pycache__/
 modelTesting/*.pyc
 
+# Ignore the self-contained demo app folder
+/parking_demo_app/
+
 # Model files
 *.pt
 modelTesting/*.pt
