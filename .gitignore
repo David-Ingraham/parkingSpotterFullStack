@@ -30,3 +30,14 @@ modelTesting/*.pyc
 # Model files
 *.pt
 modelTesting/*.pt
+
+# Firebase credentials
+backend/firebase-credentials.json
+firebase-credentials.json
+backend/firebase_credentials.json
+
+# SQLite databases
+backend/parking_spotter.db
+backend/parking_spotter.db-journal
+*.db
+*.db-journal
