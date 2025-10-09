@@ -3,11 +3,15 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database.db import SessionLocal
+from database.db import SessionLocal, init_db
 from database.models import Camera
 
 def populate_cameras():
     """Populate all cameras from JSON file into the database"""
+    
+    # Initialize database (create tables if they don't exist)
+    print("Initializing database...")
+    init_db()
     
     # Load camera data
     json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'camera_id_lat_lng_wiped.json')

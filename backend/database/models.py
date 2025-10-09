@@ -29,7 +29,12 @@ class Watcher(Base):
     time_to_live = Column(Integer, nullable=False)
     expires_at = Column(DateTime(timezone=True), nullable=False)
     is_connected = Column(Boolean, default=False)
-    created_at = Column(DateTime(timezone=True), server_default='CURRENT_TIMESTAMP')
+    
+    # Push notification support
+    push_token = Column(String(500), nullable=True)
+    platform = Column(String(20), nullable=True)  # 'ios' or 'android'
+    
+    created_at = Column(DateTime(timezone=True), default=func.now())
     
     # Relationships
     camera = relationship('Camera', back_populates='watchers')
@@ -53,7 +58,7 @@ class CameraStatusHistory(Base):
     id = Column(Integer, primary_key=True)
     camera_address = Column(String(255), ForeignKey('cameras.address'))
     status = Column(String(50), nullable=False)
-    recorded_at = Column(DateTime(timezone=True), server_default='CURRENT_TIMESTAMP')
+    recorded_at = Column(DateTime(timezone=True), default=func.now())
     
     # Relationships
     camera = relationship('Camera', back_populates='status_history')

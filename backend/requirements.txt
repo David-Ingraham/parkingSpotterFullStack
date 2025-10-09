@@ -3,7 +3,6 @@ flask-socketio==5.3.6
 flask-cors==4.0.0
 waitress==2.1.2
 python-socketio==5.11.1
-psycopg2==2.9.9  # Changed from psycopg2-binary
 SQLAlchemy==2.0.27
 alembic==1.13.1
 requests==2.31.0
@@ -16,3 +15,5 @@ Werkzeug==3.0.1  # Required for secure file handling
 typing-extensions==4.9.0  # Required for type hints
 flask-limiter==3.5.0  # Rate limiting
 flask-talisman==1.1.0  # HTTPS enforcement
+firebase-admin==6.4.0  # Push notifications
+ultralytics==8.1.0  # YOLOv8 model

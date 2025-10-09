@@ -29,4 +29,6 @@ def get_db():
 
 def init_db():
     """Initialize the database, creating all tables."""
+    # Import models to register them with Base.metadata
+    from . import models
     Base.metadata.create_all(bind=engine) 

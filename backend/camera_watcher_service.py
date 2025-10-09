@@ -13,7 +13,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from database.db import SessionLocal
 from database.models import Camera, Watcher, cleanup_expired_watchers, get_watched_cameras
 from helpers.fetch_image import fetch_and_save_image
-from websocket_server import emit_camera_update
+from helpers.push_notification import init_firebase, send_push_notification
 
 # Import YOLO for vision model
 from ultralytics import YOLO
@@ -27,6 +27,8 @@ class CameraWatcherService:
     def __init__(self):
         self.model = None
         print("Initializing Camera Watcher Service...")
+        print("Initializing Firebase for push notifications...")
+        init_firebase()
         
     def load_model(self):
         """Load the vision model"""
@@ -100,6 +102,75 @@ class CameraWatcherService:
         
         return False
     
+    def notify_watchers(self, camera_address: str, new_status: str):
+        """
+        Send push notifications to all watchers of this camera
+        """
+        db = SessionLocal()
+        
+        try:
+            # Get all watchers for this camera with push tokens
+            watchers = db.query(Watcher).filter_by(
+                camera_address=camera_address
+            ).filter(
+                Watcher.expires_at > datetime.now(timezone.utc),
+                Watcher.push_token.isnot(None)
+            ).all()
+            
+            if not watchers:
+                print(f"  No watchers with push tokens for {camera_address}")
+                return
+            
+            # Format status for user-friendly notification
+            status_messages = {
+                'none': 'No parking detected',
+                'parked_cars': 'Only parked cars visible',
+                'open_parking': 'Open parking spots available!',
+                'both': 'Mixed - some spots available'
+            }
+            
+            title = 'Parking Update'
+            body = f'{camera_address}: {status_messages.get(new_status, new_status)}'
+            
+            success_count = 0
+            failed_watcher_ids = []
+            
+            for watcher in watchers:
+                data = {
+                    'camera_address': camera_address,
+                    'status': new_status,
+                    'timestamp': datetime.now(timezone.utc).isoformat()
+                }
+                
+                success = send_push_notification(
+                    watcher.push_token,
+                    title,
+                    body,
+                    data
+                )
+                
+                if success:
+                    success_count += 1
+                else:
+                    # Mark token as invalid
+                    failed_watcher_ids.append(watcher.id)
+            
+            # Clean up invalid tokens
+            if failed_watcher_ids:
+                db.query(Watcher).filter(Watcher.id.in_(failed_watcher_ids)).update(
+                    {Watcher.push_token: None},
+                    synchronize_session=False
+                )
+                db.commit()
+                print(f"  Removed {len(failed_watcher_ids)} invalid push tokens")
+            
+            print(f"  Sent {success_count} push notifications for {camera_address}")
+            
+        except Exception as e:
+            print(f"  Error notifying watchers: {e}")
+        finally:
+            db.close()
+    
     def process_camera(self, camera: Camera, db):
         """Process a single camera: fetch image, run model, update status"""
         try:
@@ -128,8 +199,8 @@ class CameraWatcherService:
             
             # Check if we should notify
             if self.should_notify(camera, new_status):
-                print(f"  STATUS CHANGED - Notifying watchers")
-                emit_camera_update(camera.address, new_status)
+                print(f"  STATUS CHANGED - Sending push notifications")
+                self.notify_watchers(camera.address, new_status)
             else:
                 print(f"  No change - No notification")
             

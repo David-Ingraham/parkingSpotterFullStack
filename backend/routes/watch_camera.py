@@ -61,6 +61,10 @@ def watch_camera():
                 "message": f"Missing required fields. Need: {', '.join(required_fields)}"
             }), 400
         
+        # Optional push notification fields
+        push_token = data.get('pushToken')
+        platform = data.get('platform')  # 'ios' or 'android'
+        
         # Validate time to live
         if not is_valid_time_to_live(data['timeToLive']):
             return jsonify({
@@ -92,6 +96,9 @@ def watch_camera():
             # Update existing watcher
             watcher.time_to_live = data['timeToLive']
             watcher.expires_at = expires_at
+            if push_token:
+                watcher.push_token = push_token
+                watcher.platform = platform
             message = "Watch parameters updated"
         else:
             # Create new watcher
@@ -99,7 +106,9 @@ def watch_camera():
                 camera_address=data['address'],
                 client_id=data['client_id'],
                 time_to_live=data['timeToLive'],
-                expires_at=expires_at
+                expires_at=expires_at,
+                push_token=push_token,
+                platform=platform
             )
             db.add(watcher)
             message = "Camera added to watch list"
