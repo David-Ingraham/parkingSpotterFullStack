@@ -11,10 +11,13 @@ import {
   Platform,
 } from 'react-native';
 import { useNearbyPhotos } from '../hooks/useNearbyPhotos';
+import { useNotifications } from '../hooks/useNotifications';
+import { WatchCameraButton } from '../components/WatchCameraButton';
 
 export function NearestParkingScreen() {
   const [numCams, setNumCams] = useState(5);
   const { coords, photos, loading, error, loadPhotos } = useNearbyPhotos(numCams);
+  const { fcmToken } = useNotifications();
 
   const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -101,6 +104,10 @@ export function NearestParkingScreen() {
             source={{ uri: photo.uri }} 
               style={styles.photo} 
             />
+          <WatchCameraButton 
+            cameraAddress={photo.address}
+            fcmToken={fcmToken}
+          />
           </View>
       ))}
     </ScrollView>

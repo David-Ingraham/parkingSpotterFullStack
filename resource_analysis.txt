@@ -1,0 +1,44 @@
+Resource Analysis
+Per-Camera Cost
+1. Image Fetch (~500ms)
+HTTP request to NYC API
+Download ~50-100KB JPEG
+Minimal resource use
+2. YOLO Inference (~200-1000ms depending on hardware)
+CPU: YOLOv8l uses ~2-4 CPU cores per inference
+Memory: ~2GB RAM loaded once, ~100MB per inference
+GPU (if available): ~50-200ms per image
+Total per camera: ~1-2 seconds
+Scalability
+Cameras Watched	Time per Cycle	Feasible?
+1 camera	1-2 seconds	✅ Easy
+10 cameras	10-20 seconds	✅ Easy
+50 cameras	50-100 seconds (1.5 min)	✅ Doable
+100 cameras	100-200 seconds (3 min)	⚠️ Tight (takes 3/5 of cycle)
+216 cameras	216-432 seconds (7 min)	❌ Exceeds 5-min cycle
+Why 5 Minutes?
+1. Parking Changes Slowly
+Cars don't park/unpark every 30 seconds
+A spot that opened 2 minutes ago is likely still there
+5 minutes is fast enough for actionable info
+2. NYC API Rate Limits
+You're hitting a public API
+Too aggressive = potential IP ban
+216 cameras × 12 times/hour = 2,592 requests/hour
+If all watched: risky!
+3. User Expectations
+Users watching 1-3 cameras: 5 min feels real-time
+Email/SMS notifications take minutes anyway
+Mobile push is instant delivery, but parking changes slowly
+4. Processing Budget
+At 5-min intervals, you can comfortably handle 50-100 watched cameras
+Gives buffer for slow inferences or API delays
+Optimizations You Could Make
+Option 1: Dynamic Interval Based on Load
+Option 2: Parallel Processing (Much Faster!)
+With 10 parallel workers:
+100 cameras: ~10-20 seconds instead of 3 minutes!
+Can handle all 216 cameras in ~45 seconds
+Option 3: Priority Queues
+Option 4: Per-User Custom Intervals
+Real-World Scenarios

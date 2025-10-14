@@ -1,11 +1,12 @@
 // App.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, StyleSheet, Platform, View, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from './screens/HomeScreen';
 import { DirectSearchScreen } from './screens/DirectSearchScreen';
 import { NearestParkingScreen } from './screens/NearestParkingScreen';
+import { useNotifications } from './hooks/useNotifications';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,13 @@ const GradientHeaderTitle = ({ title }: { title: string }) => (
 );
 
 export default function App() {
+  const { initialize } = useNotifications();
+
+  useEffect(() => {
+    // Initialize Firebase notifications
+    initialize();
+  }, [initialize]);
+
   try {
     return (
       <ErrorBoundary>

@@ -5,6 +5,8 @@ import { AutocompleteDropdown, AutocompleteDropdownContextProvider, IAutocomplet
 import { API_CONFIG } from '../config';
 import cameraLocations from '../data/camera_locations.json';
 import { CameraLocations } from '../types/camera';
+import { useNotifications } from '../hooks/useNotifications';
+import { WatchCameraButton } from '../components/WatchCameraButton';
 
 const typedCameraLocations = cameraLocations as CameraLocations;
 
@@ -30,6 +32,7 @@ export function DirectSearchScreen() {
   const headerHeight = useHeaderHeight();
   const dropdownController = useRef<IAutocompleteDropdownRef | null>(null);
   const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
+  const { fcmToken } = useNotifications();
 
   // Convert underscore format to display format
   const formatAddress = (address: string) => {
@@ -250,6 +253,10 @@ export function DirectSearchScreen() {
                   <Image 
                     source={{ uri: image.url }} 
                     style={styles.photo} 
+                  />
+                  <WatchCameraButton 
+                    cameraAddress={image.address}
+                    fcmToken={fcmToken}
                   />
                 </View>
               ))}
