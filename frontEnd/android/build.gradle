@@ -10,6 +10,13 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        // Fallback with explicit URLs
+        maven { 
+            url 'https://maven.google.com'
+            allowInsecureProtocol = false
+        }
+        // Try using JCenter as fallback
+        maven { url 'https://jcenter.bintray.com' }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")

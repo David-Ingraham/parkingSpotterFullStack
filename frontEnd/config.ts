@@ -10,12 +10,20 @@ const enforceHttps = (url: string): string => {
 
 // Get the appropriate backend URL
 const getBackendUrl = (): string => {
+  console.log('=== config.ts getBackendUrl ===');
+  console.log('BACKEND_URL from .env:', BACKEND_URL);
+  console.log('__DEV__ is:', __DEV__);
+  
   if (__DEV__) {
     // In development, use the environment variable or fallback to emulator URL
-    return BACKEND_URL || 'http://10.0.2.2:8000';
+    const url = BACKEND_URL || 'http://10.0.2.2:8000';
+    console.log('Returning dev URL:', url);
+    return url;
   } else {
     // In production, use the environment variable with a proper fallback
-    return enforceHttps(BACKEND_URL || 'https://parkingspotterbackend.onrender.com');
+    const url = enforceHttps(BACKEND_URL || 'https://parkingspotterbackend.onrender.com');
+    console.log('Returning prod URL:', url);
+    return url;
   }
 };
 

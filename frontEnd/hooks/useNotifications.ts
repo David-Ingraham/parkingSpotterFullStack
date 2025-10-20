@@ -43,20 +43,27 @@ export function useNotifications() {
     try {
       const token = await messaging().getToken();
       setFcmToken(token);
-      console.log('FCM Token:', token);
+      console.log('=== FCM Token Retrieved ===');
+      console.log('Token:', token);
       return token;
     } catch (error) {
-      console.error('Error getting FCM token:', error);
+      console.error('=== Error getting FCM token ===');
+      console.error(error);
       return null;
     }
   }, []);
 
   // Initialize notifications
   const initialize = useCallback(async () => {
+    console.log('=== Initializing Notifications ===');
     const hasPermission = await requestPermission();
+    console.log('Has permission:', hasPermission);
     if (hasPermission) {
-      await getToken();
+      const token = await getToken();
+      console.log('Token received:', token ? 'YES' : 'NO');
+      return token;
     }
+    return null;
   }, [requestPermission, getToken]);
 
   // Listen for token refresh
@@ -71,9 +78,15 @@ export function useNotifications() {
 
   // Setup notification handlers
   useEffect(() => {
+    console.log('=== Setting up notification handlers ===');
+    
     // Handle notifications when app is in foreground
     const unsubscribeForeground = messaging().onMessage(async remoteMessage => {
-      console.log('Notification received in foreground:', remoteMessage);
+      console.log('=== 🔔 NOTIFICATION RECEIVED IN FOREGROUND ===');
+      console.log('Full message:', JSON.stringify(remoteMessage, null, 2));
+      console.log('Title:', remoteMessage.notification?.title);
+      console.log('Body:', remoteMessage.notification?.body);
+      console.log('Data:', remoteMessage.data);
       
       // Show alert to user
       if (remoteMessage.notification) {
@@ -81,12 +94,15 @@ export function useNotifications() {
           remoteMessage.notification.title || 'Parking Update',
           remoteMessage.notification.body || 'Status changed'
         );
+      } else {
+        console.warn('No notification object in message');
       }
     });
 
     // Handle notification opened app
     messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log('Notification opened app:', remoteMessage);
+      console.log('=== 🔔 NOTIFICATION OPENED APP ===');
+      console.log('Message:', JSON.stringify(remoteMessage, null, 2));
       // Navigate to specific camera if needed
       // navigation.navigate('CameraDetail', { address: remoteMessage.data?.camera_address });
     });
@@ -96,12 +112,17 @@ export function useNotifications() {
       .getInitialNotification()
       .then(remoteMessage => {
         if (remoteMessage) {
-          console.log('App opened by notification:', remoteMessage);
+          console.log('=== 🔔 APP OPENED BY NOTIFICATION ===');
+          console.log('Message:', JSON.stringify(remoteMessage, null, 2));
           // Navigate to specific camera
+        } else {
+          console.log('App not opened by notification');
         }
       });
 
+    console.log('Notification handlers registered');
     return () => {
+      console.log('Unsubscribing from notification handlers');
       unsubscribeForeground();
     };
   }, []);

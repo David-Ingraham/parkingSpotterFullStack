@@ -19,7 +19,7 @@ from helpers.push_notification import init_firebase, send_push_notification
 from ultralytics import YOLO
 
 # Configuration
-POLL_INTERVAL = 300  # 5 minutes in seconds
+POLL_INTERVAL = 15  # 5 minutes in seconds
 MODEL_PATH = "model/weights.pt"
 CONFIDENCE_CHANGE_THRESHOLD = 0.20  # 20% change threshold
 

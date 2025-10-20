@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Platform, KeyboardAvoidingView, Dimensions } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { AutocompleteDropdown, AutocompleteDropdownContextProvider, IAutocompleteDropdownRef, AutocompleteDropdownItem } from 'react-native-autocomplete-dropdown';
@@ -32,7 +32,21 @@ export function DirectSearchScreen() {
   const headerHeight = useHeaderHeight();
   const dropdownController = useRef<IAutocompleteDropdownRef | null>(null);
   const cameraOptions = [1, 2, 3, 4, 5, 6, 7, 8];
-  const { fcmToken } = useNotifications();
+  const { fcmToken, initialize: initializeNotifications } = useNotifications();
+
+  // Log screen initialization
+  useEffect(() => {
+    console.log('=== DirectSearchScreen Loaded ===');
+    console.log('API Base URL:', API_CONFIG.baseUrl);
+    console.log('Environment:', __DEV__ ? 'Development' : 'Production');
+    console.log('Platform:', Platform.OS);
+    
+    // Initialize notifications and request permissions
+    console.log('Initializing notifications...');
+    initializeNotifications().then(() => {
+      console.log('Notifications initialized');
+    });
+  }, [initializeNotifications]);
 
   // Convert underscore format to display format
   const formatAddress = (address: string) => {
@@ -61,53 +75,110 @@ export function DirectSearchScreen() {
   }, []);
 
   const handleAddressSelect = async (address: string) => {
+    console.log('=== handleAddressSelect called ===');
+    console.log('Selected address:', address);
+    console.log('numCams:', numCams);
+    console.log('Timestamp:', new Date().toISOString());
+    
     setSelectedAddress(address);
     setIsLoading(true);
     setError(null);
     setImages([]);
 
     try {
-      const response = await fetch(`${API_CONFIG.baseUrl}/search_cameras`, {
+      const url = `${API_CONFIG.baseUrl}/search_cameras`;
+      const requestBody = {
+        addresses: [address],
+        numCams: numCams
+      };
+      
+      console.log('Making fetch request to:', url);
+      console.log('Request body:', JSON.stringify(requestBody));
+      console.log('Request starting at:', new Date().toISOString());
+      
+      // Create abort controller for timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => {
+        console.error('!!! Request timed out after 30 seconds !!!');
+        controller.abort();
+      }, 30000);
+      
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          addresses: [address],
-          numCams: numCams
-        }),
+        body: JSON.stringify(requestBody),
+        signal: controller.signal,
       });
+      
+      clearTimeout(timeoutId);
+      
+      console.log('=== Response received! ===');
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+      console.log('Response type:', response.type);
+      console.log('Response URL:', response.url);
 
       if (!response.ok) {
+        console.error('Response not OK, status:', response.status);
+        const errorText = await response.text();
+        console.error('Error response body:', errorText);
         throw new Error('Failed to fetch camera images');
       }
 
       const data = await response.json();
+      console.log('Response data:', JSON.stringify(data, null, 2));
       
       if (data.images && data.images.length > 0) {
+        console.log('Success! Received', data.images.length, 'images');
         setImages(data.images);
       } else {
+        console.warn('No images in response');
         setError('No images available for this area');
       }
-    } catch (err) {
-      setError('Failed to load camera images. Please try again.');
+    } catch (err: any) {
+      console.error('=== FETCH ERROR ===');
+      console.error('Error type:', err.constructor.name);
+      console.error('Error message:', err.message);
+      console.error('Error name:', err.name);
+      console.error('Full error:', JSON.stringify(err, Object.getOwnPropertyNames(err)));
+      
+      if (err.name === 'AbortError') {
+        setError('Request timed out. Please check your connection and try again.');
+      } else {
+        setError('Failed to load camera images. Please try again.');
+      }
     } finally {
+      console.log('=== Request completed ===');
       setIsLoading(false);
     }
   };
 
   // Industry standard: proper item selection handling
   const handleSelectItem = (item: AutocompleteDropdownItem | null) => {
+    console.log('=== handleSelectItem called ===');
+    console.log('Selected item:', JSON.stringify(item));
+    
     if (item && item.id) {
       const suggestionItem = { id: item.id, title: item.title || '' };
       setSelectedItem(suggestionItem);
+      console.log('Calling handleAddressSelect with:', item.id);
       handleAddressSelect(item.id);
+    } else {
+      console.log('No valid item selected');
     }
   };
 
   const handleSearchPress = () => {
+    console.log('=== handleSearchPress called ===');
+    console.log('Selected item:', JSON.stringify(selectedItem));
+    
     if (selectedItem) {
+      console.log('Calling handleAddressSelect with:', selectedItem.id);
       handleAddressSelect(selectedItem.id);
+    } else {
+      console.log('No item selected, cannot search');
     }
   };
 

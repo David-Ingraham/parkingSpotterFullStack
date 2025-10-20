@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "658052120747",
+    "project_id": "parkingspotter-fa776",
+    "storage_bucket": "parkingspotter-fa776.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658052120747:android:0e0c5e6e41429f078677ee",
+        "android_client_info": {
+          "package_name": "com.parkingspotter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRUcuQD0uBg7E3NjJOJkWpGSwHP-hu6xQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
