@@ -1,7 +1,61 @@
-backend/static/
-notes2.txt
+# ===== Backend =====
+# Python
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/**/*.pyc
+backend/**/*.pyo
+backend/venv/
+backend/env/
+backend/.venv/
 
-# Traffic Data Collection System
+# Environment variables (IMPORTANT - contains API keys!)
+backend/.env
+.env
+
+# Static files (generated camera images)
+backend/static/
+
+# SQLite databases
+backend/parking_spotter.db
+backend/parking_spotter.db-journal
+*.db
+*.db-journal
+
+# Firebase credentials (CRITICAL - never commit!)
+backend/firebase-credentials.json
+backend/firebase_credentials.json
+firebase-credentials.json
+firebase_credentials.json
+
+# Model files
+*.pt
+modelTesting/*.pt
+
+# ===== Frontend =====
+# Dependencies
+frontEnd/node_modules/
+node_modules/
+
+# Environment variables (IMPORTANT - contains backend URLs!)
+frontEnd/.env
+frontEnd/.env.local
+frontEnd/.env.*.local
+
+# Build artifacts
+frontEnd/android/app/build/
+frontEnd/android/build/
+frontEnd/android/.gradle/
+frontEnd/ios/build/
+frontEnd/ios/Pods/
+frontEnd/ios/.xcode.env.local
+
+# Bundle artifacts
+frontEnd/*.jsbundle
+frontEnd/android/app/src/main/assets/*.bundle
+
+# ===== Traffic Data Collection =====
 backend/data_collection/traffic_data.db
 backend/data_collection/traffic_data.db-journal
 backend/data_collection/logs/
@@ -12,6 +66,8 @@ backend/data_collection/*.pyc
 backend/data_collection/*.pyo
 backend/data_collection/venv/
 backend/data_collection/env/
+
+# ===== Model Testing =====
 modelTesting/test_images/
 modelTesting/yolov8x.pt
 modelTesting/yolov8l.pt
@@ -24,20 +80,33 @@ modelTesting/env/
 modelTesting/__pycache__/
 modelTesting/*.pyc
 
-# Ignore the self-contained demo app folder
+# ===== Demo App =====
 /parking_demo_app/
 
-# Model files
-*.pt
-modelTesting/*.pt
+# ===== IDE & OS Files =====
+# VS Code
+.vscode/
+*.code-workspace
 
-# Firebase credentials
-backend/firebase-credentials.json
-firebase-credentials.json
-backend/firebase_credentials.json
+# JetBrains IDEs
+.idea/
+*.iml
 
-# SQLite databases
-backend/parking_spotter.db
-backend/parking_spotter.db-journal
-*.db
-*.db-journal
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ===== Notes & Temporary Files =====
+notes2.txt
+notes.txt
+*.tmp
+*.log
