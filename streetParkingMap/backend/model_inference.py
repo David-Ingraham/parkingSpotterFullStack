@@ -29,12 +29,13 @@ class ParkingDetector:
             image: PIL Image object
             
         Returns:
-            Dict with detection counts and confidences:
+            Dict with detection counts, confidences, and annotated image:
             {
                 'parked_cars_confidence': float,
                 'open_parking_confidence': float,
                 'parked_cars_count': int,
-                'open_parking_count': int
+                'open_parking_count': int,
+                'annotated_image': PIL.Image (with bounding boxes drawn)
             }
         """
         if image is None:
@@ -42,11 +43,13 @@ class ParkingDetector:
                 'parked_cars_confidence': 0.0,
                 'open_parking_confidence': 0.0,
                 'parked_cars_count': 0,
-                'open_parking_count': 0
+                'open_parking_count': 0,
+                'annotated_image': None
             }
         
-        # Run inference with low confidence threshold
-        results = self.model(image, conf=0.01, verbose=False)
+        # Run inference with very low confidence threshold
+        # Low threshold helps catch hesitant "open_parking" detections
+        results = self.model(image, conf=0.005, verbose=False)
         
         # Parse predictions
         parked_cars_detections = []
@@ -56,9 +59,10 @@ class ParkingDetector:
             class_name = results[0].names[int(box.cls.item())]
             confidence = box.conf.item()
             
-            if class_name == "parkedCars":
+            # Handle both possible naming conventions from model
+            if class_name in ["parkedCars", "parked_cars"]:
                 parked_cars_detections.append(confidence)
-            elif class_name == "openParking":
+            elif class_name in ["openParking", "open_parking"]:
                 open_parking_detections.append(confidence)
         
         # Calculate average confidences
@@ -71,11 +75,17 @@ class ParkingDetector:
             if open_parking_detections else 0.0
         )
         
+        # Generate annotated image with bounding boxes
+        # YOLO's plot() method draws boxes automatically
+        annotated_array = results[0].plot()  # Returns numpy array
+        annotated_image = Image.fromarray(annotated_array)  # Convert to PIL Image
+        
         return {
             'parked_cars_confidence': avg_parked_cars,
             'open_parking_confidence': avg_open_parking,
             'parked_cars_count': len(parked_cars_detections),
-            'open_parking_count': len(open_parking_detections)
+            'open_parking_count': len(open_parking_detections),
+            'annotated_image': annotated_image
         }
     
     def determine_status(self, predictions: Dict) -> str:
@@ -86,14 +96,13 @@ class ParkingDetector:
             predictions: Dict from run_inference()
             
         Returns:
-            Status string: 'open_parking', 'parked_cars', 'both', or 'none'
+            Status string: 'open_parking', 'parked_cars', or 'none'
         """
-        has_parked_cars = predictions['parked_cars_confidence'] > 0
         has_open_parking = predictions['open_parking_confidence'] > 0
+        has_parked_cars = predictions['parked_cars_confidence'] > 0
         
-        if has_parked_cars and has_open_parking:
-            return "both"
-        elif has_open_parking:
+        # If ANY open parking detected, show as available (green)
+        if has_open_parking:
             return "open_parking"
         elif has_parked_cars:
             return "parked_cars"

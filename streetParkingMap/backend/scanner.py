@@ -5,6 +5,8 @@ Handles parallel scanning of multiple cameras
 
 import json
 import time
+import base64
+from io import BytesIO
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, Optional
 from datetime import datetime
@@ -61,6 +63,20 @@ class CameraScanner:
             predictions = self.detector.run_inference(image)
             status = self.detector.determine_status(predictions)
             
+            # Convert annotated image to base64 for frontend display
+            annotated_image_base64 = None
+            if predictions['annotated_image'] is not None:
+                buffered = BytesIO()
+                # Resize to reasonable size to reduce memory (max width 800px)
+                annotated_img = predictions['annotated_image']
+                if annotated_img.width > 800:
+                    ratio = 800 / annotated_img.width
+                    new_size = (800, int(annotated_img.height * ratio))
+                    annotated_img = annotated_img.resize(new_size)
+                
+                annotated_img.save(buffered, format="JPEG", quality=85)
+                annotated_image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+            
             # Build result
             result = {
                 'address': address,
@@ -72,6 +88,7 @@ class CameraScanner:
                 'open_parking_confidence': round(predictions['open_parking_confidence'], 3),
                 'parked_cars_count': predictions['parked_cars_count'],
                 'open_parking_count': predictions['open_parking_count'],
+                'annotated_image': annotated_image_base64,
                 'last_scanned': datetime.utcnow().isoformat() + 'Z'
             }
             
