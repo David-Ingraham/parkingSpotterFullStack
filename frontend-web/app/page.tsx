@@ -15,10 +15,7 @@ export default function Home() {
           Find street parking in NYC.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-zinc-300 sm:text-lg">
-          Parking Spotter shows you live NYC DOT traffic cameras for the streets
-          and intersections where parking is hardest — so you can see whether a
-          block is already full before you drive there. No signup, no app
-          install, free to use.
+         
         </p>
 
         <div className="mt-8 max-w-xl">
