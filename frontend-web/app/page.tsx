@@ -94,15 +94,10 @@ export default function Home() {
 
       <section className="mb-10 max-w-3xl">
         <h2 className="mb-3 font-mono text-sm font-bold uppercase tracking-widest text-zinc-300">
-          How it works
+       
         </h2>
         <p className="text-sm leading-relaxed text-zinc-400">
-          NYC DOT publishes live camera feeds at hundreds of intersections
-          citywide. Parking Spotter picks out the cameras that cover streets
-          with heavy parking demand — near bars, restaurants, markets, transit
-          hubs, and dense residential blocks — and groups them by neighborhood.
-          Pick a feed, glance at the block, decide whether it is worth the
-          drive. Images come straight from NYC DOT and refresh on demand.
+        
         </p>
       </section>
 
