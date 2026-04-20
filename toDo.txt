@@ -1,0 +1,30 @@
+done*****fix some of the ai sloppage text in the landing page
+
+done*****find better cameras for thelanding page. ask aclaude to suggest more then check them 
+
+done*****change auto refresh to manual button per image
+
+*****done*****deploy to vercel and fuckulatte for mobile web
+
+use alternative cameras to 86 canal and grand for after dark 
+
+, then to cloudflare pages and do basic seo
+
+then configure a linode vps once we have the vision model and sms notification pluggedin
+
+seo stuff 
+
+adress error on load -> 
+
+○ Compiling / ...
+ GET / 200 in 10.8s (next.js: 10.2s, application-code: 616ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data 
+
+
+^^^^^ i think this error get triggered on launch as well as another time as i was clicking thought it 
+notsure what triggered it the second time 

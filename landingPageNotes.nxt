@@ -1,0 +1,8 @@
+Houston_St_Bowery_St — LES/NoHo/East Village triple-point, nightlife density, iconic name, everyone knows it.
+Grand_St_Bowery — Nolita, restaurant row, Katz's foot traffic, classic "there's never a spot" block.
+Wythe_Ave_North_12_St — Williamsburg waterfront, Wythe Hotel / Brooklyn Bowl demand, weekends are carnage.
+Park_Ave_86_St — Upper East Side canonical alt-side-parking misery. Recognizable even to non-New Yorkers.
+Grand_Army_Plaza — Park Slope / Prospect Park gateway, brunch + park traffic, impossible Sundays.
+Alternates if any of those are badly angled: Delancey_St_Bowery_St, West_Houston_Hudson_St, Canal_St_Broadway, Metropolitan_Ave_Berry_St, 1_Ave_86_St, Central_Park_West_72_St.
+
+Reasonable marketing counter-argument: instead of picking 5 and hardcoding them, you could put a "Top 5 most-viewed this week" strip on the landing page driven by click counts. Punts the curation problem to your users and gives you engagement data for free. Second-iteration feature, not v1.

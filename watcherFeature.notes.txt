@@ -1,0 +1,14 @@
+one idea enginering model scanning is to constanly scan the inmemory wathclist for cameras with watchers, call that camera endpint for right now (timestamp is argument for the dot endpoint for camera feed. only sned back static image)
+
+if we find one that does not have expired wachters we process the imgaed the dnpoint repsonded with, parse the model evaluation then notify the user if open parking opened up. if the watcher is expired then we delete from watchlist. 
+so strcuture looks more like this 
+
+{
+  "10_Ave_W_34_St": {
+    "camera_id": "2bc8aef2-fc97-47e0-84cd-1efc8ee21bfe",
+    "watching_numbers": {
+      "876-988-8765":"10:37pm" #expires at
+      "865-218-2610": "4:15pm" #expires at 
+    }
+  }
+}
