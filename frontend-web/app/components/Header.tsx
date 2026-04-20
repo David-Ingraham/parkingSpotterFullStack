@@ -12,6 +12,12 @@ export default function Header() {
         </Link>
         <div className="flex items-center gap-4 text-sm">
           <Link
+            href="/parking"
+            className="text-zinc-400 transition hover:text-orange-300"
+          >
+            Neighborhoods
+          </Link>
+          <Link
             href="/browse"
             className="text-zinc-400 transition hover:text-orange-300"
           >

@@ -13,10 +13,55 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://parkingspotter.nyc";
+const SITE_NAME = "Parking Spotter NYC";
+const DEFAULT_TITLE = "Parking Spotter NYC — Live street cameras for NYC parking";
+const DEFAULT_DESCRIPTION =
+  "Live NYC DOT traffic cameras for finding street parking across Manhattan, Brooklyn, Queens, and the Bronx. No signup, no app install.";
+
 export const metadata: Metadata = {
-  title: "Parking Spotter — Live NYC street cameras",
-  description:
-    "See live NYC DOT traffic cameras for the streets with the most sought-after parking. No signup, no app install.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: "%s | Parking Spotter NYC",
+  },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "NYC parking",
+    "street parking NYC",
+    "NYC traffic cameras",
+    "live parking camera",
+    "alternate side parking",
+    "Manhattan parking",
+    "Brooklyn parking",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
