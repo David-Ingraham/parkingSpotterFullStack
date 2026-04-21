@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     )
 
     db_path: str = "./watchlist.sqlite3"
-    weights_path: str = "../weights.pt"
-    cameras_json_path: str = "../frontend-web/app/data/cameras.json"
+    weights_path: str = "./models/weights.pt"
+    cameras_json_path: str = "./app/data/cameras.json"
 
     poll_interval_seconds: int = 25
     inference_conf_threshold: float = 0.4

@@ -1,0 +1,54 @@
+app = "parkingspotter-api"
+primary_region = "ewr"
+
+[build]
+
+[env]
+  DB_PATH = "/data/watchlist.sqlite3"
+  WEIGHTS_PATH = "./models/weights.pt"
+  CAMERAS_JSON_PATH = "./app/data/cameras.json"
+
+  POLL_INTERVAL_SECONDS = "25"
+  INFERENCE_CONF_THRESHOLD = "0.4"
+  OPEN_CLASSES = '["open parking"]'
+  OCCUPIED_CLASSES = '["parkedCars"]'
+  ALLOWED_DURATIONS = "[30,60,90]"
+  ALLOWED_CORS_ORIGINS = '["https://parkingspotter.nyc","https://www.parkingspotter.nyc","http://localhost:3000"]'
+
+  DOT_IMAGE_BASE = "https://webcams.nyctmc.org/api/cameras"
+  DOT_REQUEST_TIMEOUT_SECONDS = "10"
+
+  RESEND_API_BASE = "https://api.resend.com"
+  RESEND_REQUEST_TIMEOUT_SECONDS = "15"
+  FROM_EMAIL = "alerts@parkingspotter.nyc"
+  FROM_NAME = "Parking Spotter"
+  PUBLIC_SITE_URL = "https://parkingspotter.nyc"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    hard_limit = 100
+    soft_limit = 80
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "30s"
+  method = "GET"
+  path = "/health"
+
+[[mounts]]
+  source = "watchlist_data"
+  destination = "/data"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 2048

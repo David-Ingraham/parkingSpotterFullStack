@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import Header from "./components/Header";
 import "./globals.css";
+
+const GOOGLE_ADS_ID = "AW-18107928771";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,6 +86,18 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-black text-zinc-100">
         <Header />
         <div className="flex-1">{children}</div>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
       </body>
     </html>
   );
