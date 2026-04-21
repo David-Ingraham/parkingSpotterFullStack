@@ -107,8 +107,8 @@ export default function WatchlistButton({ address, displayName, variant = "compa
           onClick={(e) => e.stopPropagation()}
           className={
             variant === "compact"
-              ? "absolute left-2 top-10 z-30 w-[260px] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-xl"
-              : "absolute left-0 top-12 z-30 w-[300px] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-xl"
+              ? "absolute left-2 top-10 z-30 w-[260px] max-h-[calc(100vh-5rem)] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-xl"
+              : "absolute left-0 top-12 z-30 w-[300px] max-h-[calc(100vh-5rem)] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-xl"
           }
         >
           {status.kind === "success" ? (
@@ -175,8 +175,7 @@ export default function WatchlistButton({ address, displayName, variant = "compa
               </button>
 
               <p className="text-[10px] leading-snug text-zinc-500">
-                You will get one email when a parking spot opens up, or when
-                the watch window expires without a change.
+              You'll get an email when a spot opens up
               </p>
             </form>
           )}

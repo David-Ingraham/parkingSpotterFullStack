@@ -15,7 +15,7 @@ export default function Home() {
           Find street parking in NYC.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-zinc-300 sm:text-lg">
-         
+          Live NYC DOT cameras show current parking conditions. Tap the watch button to be notified when a spot opens up.
         </p>
 
         <div className="mt-8 max-w-xl">
