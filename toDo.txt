@@ -1,3 +1,14 @@
+use alternative cameras to 86 canal and grand for after dark 
+swap out grande street and 86 for higher quality
+cross reference cam locations with street parking signs https://nycdotsigns.net/
+
+
+enchance / deblur the images being server . have a button to deblurr for people?
+we should probalby deblur them for traning the model and before the model is doing inferecen 
+
+
+
+
 done*****fix some of the ai sloppage text in the landing page
 
 done*****find better cameras for thelanding page. ask aclaude to suggest more then check them 
@@ -6,9 +17,10 @@ done*****change auto refresh to manual button per image
 
 *****done*****deploy to vercel and fuckulatte for mobile web
 
-use alternative cameras to 86 canal and grand for after dark 
 
-, then to cloudflare pages and do basic seo
+
+*****done*****then to cloudflare pages with namecheap dns and 
+do basic seo
 
 then configure a linode vps once we have the vision model and sms notification pluggedin
 

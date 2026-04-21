@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CameraLive from "../../components/CameraLive";
+import WatchlistButton from "../../components/WatchlistButton";
 import {
   getAllCameras,
   getCamera,
@@ -109,11 +110,16 @@ export default async function CameraDetail({
       </div>
 
       <div className="overflow-hidden rounded-xl border border-zinc-800 bg-black">
-        <div className="aspect-video">
+        <div className="relative aspect-video">
           <CameraLive
             cameraId={camera.camera_id}
             alt={camera.displayName}
             className="h-full"
+          />
+          <WatchlistButton
+            address={camera.address}
+            displayName={camera.displayName}
+            variant="compact"
           />
         </div>
       </div>
@@ -122,6 +128,14 @@ export default async function CameraDetail({
         Tap Refresh on the image for a newer frame. Images pulled directly from
         NYC DOT.
       </p>
+
+      <div className="mt-4">
+        <WatchlistButton
+          address={camera.address}
+          displayName={camera.displayName}
+          variant="full"
+        />
+      </div>
 
       <section className="mt-10 max-w-3xl">
         <h2 className="mb-3 font-mono text-sm font-bold uppercase tracking-widest text-zinc-300">
