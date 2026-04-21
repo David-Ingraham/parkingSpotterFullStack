@@ -16,7 +16,7 @@ backend-web/
     schemas.py      Pydantic request/response models
     cameras.py      Reads camera metadata from frontend-web/app/data/cameras.json
     inference.py    YOLO wrapper (ultralytics)
-    notifier.py     SMTP email sender
+    notifier.py     Resend HTTPS API email sender
     worker.py       Poll loop (fetch image, infer, diff status, notify)
   requirements.txt
   .env.example
@@ -38,9 +38,10 @@ Edit `.env`:
 - `CAMERAS_JSON_PATH` points to the frontend cameras file.
 - `OPEN_CLASSES` is the set of YOLO class names that indicate an open spot.
   Adjust to match the labels the model was trained on.
-- `SMTP_*` and `FROM_EMAIL` control email delivery. Leaving `SMTP_HOST`
-  empty makes the notifier log messages instead of sending them, which is
-  fine for local dev.
+- `RESEND_API_KEY` and `FROM_EMAIL` control email delivery via the Resend
+  HTTPS API. Leaving `RESEND_API_KEY` empty makes the notifier log messages
+  instead of sending them, which is fine for local dev. `FROM_EMAIL` must
+  use a domain that is verified in your Resend account.
 - `SHARED_API_KEY` must match the key the Next.js proxy sends in
   `X-API-Key`.
 
@@ -108,8 +109,8 @@ python scripts/seed_watch.py Grand_St_Bowery you@example.com 30
 ```
 
 `seed_watch.py` submits a watch and then reads `/state/<address>`. With
-`SMTP_HOST` empty you'll see "Would send email" lines in the uvicorn log
-when the worker detects an open-parking transition.
+`RESEND_API_KEY` empty you'll see "Would send email" lines in the uvicorn
+log when the worker detects an open-parking transition.
 
 ### 4. Frontend
 

@@ -28,11 +28,9 @@ class Settings(BaseSettings):
     dot_image_base: str = "https://webcams.nyctmc.org/api/cameras"
     dot_request_timeout_seconds: float = 10.0
 
-    smtp_host: str = ""
-    smtp_port: int = 587
-    smtp_username: str = ""
-    smtp_password: str = ""
-    smtp_use_tls: bool = True
+    resend_api_key: str = ""
+    resend_api_base: str = "https://api.resend.com"
+    resend_request_timeout_seconds: float = 15.0
     from_email: str = "noreply@example.com"
     from_name: str = "Parking Spotter"
     public_site_url: str = "http://localhost:3000"

@@ -1,74 +1,52 @@
 from __future__ import annotations
 
-import asyncio
 import logging
-import smtplib
-from email.message import EmailMessage
 from urllib.parse import quote
+
+import httpx
 
 from .config import Settings
 
 logger = logging.getLogger(__name__)
 
 
-def _build_message(
+def _build_payload(
     settings: Settings,
     to_email: str,
     address: str,
     display: str,
-) -> EmailMessage:
+) -> dict:
     site = settings.public_site_url.rstrip("/")
     link = f"{site}/camera/{quote(address, safe='')}"
+    subject = f"Parking opened up at {display}"
 
-    msg = EmailMessage()
-    msg["From"] = f"{settings.from_name} <{settings.from_email}>"
-    msg["To"] = to_email
-    msg["Subject"] = f"Parking opened up at {display}"
-
-    body_text = (
+    text = (
         f"A parking spot just opened up at {display}.\n\n"
         f"Live feed: {link}\n\n"
         "This alert was triggered by a computer vision model watching the "
         "NYC DOT camera on your behalf. Image conditions and model accuracy "
         "vary, so confirm visually before driving over."
     )
-    msg.set_content(body_text)
 
-    body_html = f"""
-      <div style="font-family: system-ui, sans-serif; color: #111;">
-        <h2 style="margin: 0 0 12px 0;">Parking opened up at {display}</h2>
-        <p>A parking spot just opened up at <strong>{display}</strong>.</p>
-        <p><a href="{link}" style="color: #ea580c;">Open the live feed</a></p>
-        <p style="font-size: 12px; color: #666;">
-          Triggered by a computer vision model watching the NYC DOT camera
-          on your behalf. Confirm visually before driving over.
-        </p>
-      </div>
-    """
-    msg.add_alternative(body_html, subtype="html")
-    return msg
+    html = (
+        '<div style="font-family: system-ui, sans-serif; color: #111;">'
+        f'<h2 style="margin: 0 0 12px 0;">Parking opened up at {display}</h2>'
+        f'<p>A parking spot just opened up at <strong>{display}</strong>.</p>'
+        f'<p><a href="{link}" style="color: #ea580c;">Open the live feed</a></p>'
+        '<p style="font-size: 12px; color: #666;">'
+        'Triggered by a computer vision model watching the NYC DOT camera '
+        'on your behalf. Confirm visually before driving over.'
+        '</p>'
+        '</div>'
+    )
 
-
-def _send_sync(settings: Settings, message: EmailMessage) -> None:
-    if not settings.smtp_host:
-        logger.info(
-            "SMTP not configured. Would send email to %s with subject %r",
-            message["To"],
-            message["Subject"],
-        )
-        return
-
-    if settings.smtp_use_tls:
-        with smtplib.SMTP(settings.smtp_host, settings.smtp_port, timeout=15) as s:
-            s.starttls()
-            if settings.smtp_username:
-                s.login(settings.smtp_username, settings.smtp_password)
-            s.send_message(message)
-    else:
-        with smtplib.SMTP_SSL(settings.smtp_host, settings.smtp_port, timeout=15) as s:
-            if settings.smtp_username:
-                s.login(settings.smtp_username, settings.smtp_password)
-            s.send_message(message)
+    return {
+        "from": f"{settings.from_name} <{settings.from_email}>",
+        "to": [to_email],
+        "subject": subject,
+        "html": html,
+        "text": text,
+    }
 
 
 async def send_open_parking_email(
@@ -77,10 +55,46 @@ async def send_open_parking_email(
     address: str,
     display: str,
 ) -> bool:
-    message = _build_message(settings, to_email, address, display)
-    try:
-        await asyncio.to_thread(_send_sync, settings, message)
+    if not settings.resend_api_key:
+        logger.info(
+            "RESEND_API_KEY not set. Would send email to %s for %s",
+            to_email,
+            display,
+        )
         return True
-    except Exception as exc:
-        logger.exception("Failed to send email to %s: %s", to_email, exc)
+
+    payload = _build_payload(settings, to_email, address, display)
+    url = f"{settings.resend_api_base.rstrip('/')}/emails"
+    headers = {
+        "Authorization": f"Bearer {settings.resend_api_key}",
+        "Content-Type": "application/json",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=settings.resend_request_timeout_seconds) as client:
+            resp = await client.post(url, headers=headers, json=payload)
+    except httpx.HTTPError as exc:
+        logger.exception("HTTP error posting to Resend for %s: %s", to_email, exc)
         return False
+
+    if resp.status_code in (200, 201):
+        try:
+            data = resp.json()
+            message_id = data.get("id")
+        except ValueError:
+            message_id = None
+        logger.info(
+            "Resend accepted email id=%s to=%s address=%s",
+            message_id,
+            to_email,
+            address,
+        )
+        return True
+
+    logger.error(
+        "Resend rejected email to %s: HTTP %d body=%s",
+        to_email,
+        resp.status_code,
+        resp.text[:500],
+    )
+    return False
