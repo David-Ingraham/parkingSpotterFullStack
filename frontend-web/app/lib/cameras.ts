@@ -17,11 +17,11 @@ const CAMERA_DATA = rawCameras as Record<string, CameraRecord>;
 const DOT_IMAGE_BASE = "https://webcams.nyctmc.org/api/cameras";
 
 export const FEATURED_ADDRESSES: readonly string[] = [
-  "Grand_St_Bowery",
+  "Delancey_St_Bowery_St",
   "Wythe_Ave_North_12_St",
   "Canal_St_Broadway",
   "West_Houston_Hudson_St",
-  "1_Ave_86_St",
+  "Canal_Street_Allen_Street",
   "Flatbush_Ave_Nostrand_Ave",
 ] as const;
 
