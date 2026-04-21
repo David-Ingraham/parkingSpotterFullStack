@@ -73,7 +73,7 @@ export default async function NeighborhoodPage({
           Parking in {neighborhood.name}
         </h1>
         <p className="mt-4 text-base leading-relaxed text-zinc-300">
-          {neighborhood.intro}
+          
         </p>
       </header>
 
@@ -101,14 +101,7 @@ export default async function NeighborhoodPage({
         <h2 className="mb-3 font-mono text-sm font-bold uppercase tracking-widest text-zinc-300">
           Parking tips for {neighborhood.name}
         </h2>
-        <ul className="space-y-2 text-sm leading-relaxed text-zinc-300">
-          {neighborhood.tips.map((tip) => (
-            <li key={tip} className="flex gap-3">
-              <span className="mt-1 shrink-0 text-orange-400">•</span>
-              <span>{tip}</span>
-            </li>
-          ))}
-        </ul>
+        
         <p className="mt-4 text-xs text-zinc-500">
           Rules vary block by block. Always read posted signs before leaving
           your car. Alternate-side suspension days are listed on the{" "}
