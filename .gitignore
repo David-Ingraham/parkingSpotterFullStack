@@ -1,2 +1,5 @@
 backend/static/
 notes2.txt
+*.sqlite3
+*.sqlite
+*.db
