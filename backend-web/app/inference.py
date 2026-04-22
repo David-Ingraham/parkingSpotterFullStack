@@ -3,7 +3,7 @@ from __future__ import annotations
 import io
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 
 from PIL import Image
 
@@ -16,12 +16,17 @@ class OpenParkingDetector:
     """Wraps a YOLOv8/v12 model loaded via ultralytics.
 
     The trained model has two classes: `open_parking` and `parked_cars`.
-    `predict` returns:
-      - True  : at least one `open_parking` detection above the conf threshold.
-      - False : no `open_parking` detection, but at least one `parked_cars`
-                detection. Interpretation: the block is full.
-      - None  : no recognized detections at all. Interpretation: the frame
-                is too dark / occluded / noisy to trust; skip this cycle.
+    `predict` returns a tuple `(status, annotated_jpeg_bytes)`:
+      - status True  : at least one `open_parking` detection above threshold.
+      - status False : no `open_parking`, but at least one `parked_cars`.
+                       Interpretation: the block is full.
+      - status None  : no recognized detections. Frame is too dark / occluded
+                       / noisy to trust; skip this cycle.
+
+    `annotated_jpeg_bytes` is populated only when status is True. It contains
+    the input frame with bounding boxes, class labels, and confidences drawn
+    by ultralytics' `Results.plot()`. On any failure to render or encode, the
+    second element is None and callers should fall back to the raw frame.
 
     The exact label strings are driven by OPEN_CLASSES and OCCUPIED_CLASSES
     in config so they can be re-mapped without touching this file."""
@@ -60,7 +65,7 @@ class OpenParkingDetector:
                 sorted(loaded),
             )
 
-    def predict(self, image_bytes: bytes) -> Optional[bool]:
+    def predict(self, image_bytes: bytes) -> Tuple[Optional[bool], Optional[bytes]]:
         if self._model is None:
             raise RuntimeError("Detector has not been loaded")
 
@@ -68,7 +73,7 @@ class OpenParkingDetector:
             image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         except Exception as exc:
             logger.warning("Could not decode image: %s", exc)
-            return None
+            return None, None
 
         try:
             results = self._model.predict(
@@ -78,7 +83,7 @@ class OpenParkingDetector:
             )
         except Exception as exc:
             logger.exception("Inference failure: %s", exc)
-            return None
+            return None, None
 
         open_labels = {c.lower() for c in self._settings.open_classes}
         occupied_labels = {c.lower() for c in self._settings.occupied_classes}
@@ -105,7 +110,25 @@ class OpenParkingDetector:
         )
 
         if open_count > 0:
-            return True
+            annotated = self._render_annotated(results)
+            return True, annotated
         if occupied_count > 0:
-            return False
-        return None
+            return False, None
+        return None, None
+
+    def _render_annotated(self, results) -> Optional[bytes]:
+        """Encode the first result with bounding boxes as a JPEG byte string.
+
+        Returns None on any failure; callers should fall back to the raw frame."""
+        try:
+            first = results[0] if results else None
+            if first is None:
+                return None
+            bgr = first.plot()
+            rgb = Image.fromarray(bgr[:, :, ::-1])
+            buf = io.BytesIO()
+            rgb.save(buf, format="JPEG", quality=85)
+            return buf.getvalue()
+        except Exception as exc:
+            logger.warning("Annotated image render failed: %s", exc)
+            return None
