@@ -1,9 +1,5 @@
 {
-    "10_Ave_42_St": {
-        "camera_id": "b55781b8-827c-40e3-b094-27c289d22f7a",
-        "latitude": 40.7596359,
-        "longitude": -73.99547299999999
-    },
+   
     "10_Ave_57_St": {
         "camera_id": "d4bbce49-b087-4524-a835-08cb253926a7",
         "latitude": 40.7691228,
@@ -29,26 +25,11 @@
         "latitude": 40.7921889,
         "longitude": -73.9382057
     },
-    "1_Ave_124_St": {
-        "camera_id": "38c07664-0329-471e-997f-6a9015a5bcef",
-        "latitude": 40.8009822,
-        "longitude": -73.9317753
-    },
-    "1_Ave_14_St": {
-        "camera_id": "23994d9e-7e59-4808-8d47-405f779d19cf",
-        "latitude": 40.73134690000001,
-        "longitude": -73.98257
-    },
     "1_Ave_57_st": {
         "camera_id": "79f45918-c13e-4357-9ccb-9e3e7ea5b6af",
         "latitude": 40.7583141,
         "longitude": -73.9629308,
         "formatted_address": "1 Avenue & 57 st, Manhattan, New York, NY"
-    },
-    "1_Ave_62_St": {
-        "camera_id": "aa85b894-336d-42bb-9801-0359e452f845",
-        "latitude": 40.7614857,
-        "longitude": -73.9606064
     },
     "1_Ave_84_St": {
         "camera_id": "330e2a88-3cea-4ce5-b1a2-ae8440de9b1a",
@@ -74,36 +55,6 @@
         "camera_id": "05468f62-4092-4ff5-9bb6-0f70e56ff544",
         "latitude": 40.7542519,
         "longitude": -73.9689799
-    },
-    "2_Ave_58_St": {
-        "camera_id": "5b44d19e-de48-4941-b071-d2a4c08bd230",
-        "latitude": 40.7599945,
-        "longitude": -73.96480059999999
-    },
-    "2_Ave_74_St": {
-        "camera_id": "6316453d-6161-4b98-a8e7-0e36c69d267c",
-        "latitude": 40.7701247,
-        "longitude": -73.9574058
-    },
-    "2_Ave_79_St": {
-        "camera_id": "074b4e06-5090-47a5-b672-8b15780c9255",
-        "latitude": 40.7733131,
-        "longitude": -73.95508029999999
-    },
-    "2_AVE_86_St": {
-        "camera_id": "ac9ea7e9-4ab8-4188-be33-40266bcf9378",
-        "latitude": 40.7778877,
-        "longitude": -73.9517667
-    },
-    "2_Ave_E_14_St": {
-        "camera_id": "02d7db8e-481d-477e-9cdb-a2b6c6ec1ca3",
-        "latitude": 40.732367,
-        "longitude": -73.9849338
-    },
-    "3rd_Av_E_156_St_": {
-        "camera_id": "11ce0ee6-349b-4120-a66e-6299d28915f5",
-        "latitude": 40.8201414,
-        "longitude": -73.9130693
     },
     "3_Ave_114_St": {
         "camera_id": "d67e45e9-034f-4bd9-9bc3-12d07a12af48",
@@ -135,30 +86,10 @@
         "latitude": 40.6481349,
         "longitude": -74.01383919999999
     },
-    "3_Ave_57_St": {
-        "camera_id": "62b3062d-542f-40f1-86ec-206710e789b6",
-        "latitude": 40.6438874,
-        "longitude": -74.0188639
-    },
     "3_AVE_76_St": {
         "camera_id": "3df06012-4c10-46e1-81d0-55405342e8df",
         "latitude": 40.6307626,
         "longitude": -74.02809239999999
-    },
-    "3_Ave_Atlantic_Ave": {
-        "camera_id": "f801cf2f-cd02-4077-aa53-99ee8a00e1ab",
-        "latitude": 40.68533490000001,
-        "longitude": -73.9807122
-    },
-    "3_Ave_E_14_St": {
-        "camera_id": "ebac5b6e-bd3a-4046-926b-7446edab9bee",
-        "latitude": 40.7359256,
-        "longitude": -73.9934074
-    },
-    "3_Ave_E_163_St": {
-        "camera_id": "96636993-475f-46bb-95b6-d5b937065648",
-        "latitude": 40.823872,
-        "longitude": -73.908699
     },
     "3_Ave_E_86_St": {
         "camera_id": "10c5f42d-6b32-4533-9c35-5715af4e4c76",
@@ -186,28 +117,6 @@
         "latitude": 40.6655548,
         "longitude": -73.99285840000002
     },
-    "5_Ave_23_St": {
-        "camera_id": "3486cafa-aab2-418a-baa4-89dcc438e8c9",
-        "latitude": 40.7415645,
-        "longitude": -73.989583
-    },
-    "5_Ave_46_St": {
-        "camera_id": "8933100a-8229-42fe-b4b2-265db410d7ae",
-        "latitude": 40.7560367,
-        "longitude": -73.9790325,
-        "formatted_address": "5 Avenue & 46 St, Manhattan, New York, NY"
-    },
-    "5_Ave_49_St": {
-        "camera_id": "7a7016c5-a086-40fd-9298-90f17f8b6cea",
-        "latitude": 40.7579283,
-        "longitude": -73.9776586,
-        "formatted_address": "5 Avenue & 49 St, Manhattan, New York, NY"
-    },
-    "5_Ave_59_St": {
-        "camera_id": "b5a78bda-3ca9-4ad4-bd03-4cee70baba2d",
-        "latitude": 40.764893,
-        "longitude": -73.972984
-    },
     "5_Ave_66_St": {
         "camera_id": "81db80c2-13fe-4ae7-8b47-c08aa42d512f",
         "latitude": 40.768657,
@@ -224,11 +133,6 @@
         "latitude": 40.7802392,
         "longitude": -73.9613707,
         "formatted_address": "5 Avenue & 84 St, Manhattan, New York, NY"
-    },
-    "5_Ave_86_St": {
-        "camera_id": "06ea08ec-5cd8-4bd6-9535-502acf651abc",
-        "latitude": 40.7815371,
-        "longitude": -73.9604226
     },
     "7_Ave_145_St": {
         "camera_id": "61890a52-c90e-41a1-b032-d5c6f39746d9",
@@ -266,11 +170,6 @@
         "latitude": 40.7453092,
         "longitude": -73.9984923
     },
-    "8_Ave_49_St": {
-        "camera_id": "4850e464-1111-4b5d-a72d-f54a0e12a789",
-        "latitude": 40.6416859,
-        "longitude": -74.00313179999999
-    },
     "8_Ave_57_St": {
         "camera_id": "d78ebdc6-2211-479e-bda6-59d79db20258",
         "latitude": 40.63720199999999,
@@ -281,40 +180,15 @@
         "latitude": 40.6657982,
         "longitude": -73.9791868
     },
-    "9_Ave_23_St": {
-        "camera_id": "d1c219c0-afdd-4fa4-a72c-cc1b1318b99d",
-        "latitude": 40.746509,
-        "longitude": -74.0013546
-    },
     "9_Ave_30_St": {
         "camera_id": "2191c11c-1757-4938-a608-a2c6ae0e6486",
         "latitude": 40.7509091,
         "longitude": -73.9981634
     },
-    "9_Ave_37_St": {
-        "camera_id": "326b2bab-d277-4c5a-9778-a7af791ad151",
-        "latitude": 40.64708050000001,
-        "longitude": -73.9939342
-    },
-    "9_Ave_42_St": {
-        "camera_id": "ccd1abb9-0683-4d93-a62f-b2b121612d28",
-        "latitude": 40.64427329999999,
-        "longitude": -73.99686810000001
-    },
-    "9_Ave_57_St": {
-        "camera_id": "37e2a4b6-2fbd-42f5-9d2d-130b664783f2",
-        "latitude": 40.6358714,
-        "longitude": -74.0055931
-    },
     "9_Ave_W_39_St": {
         "camera_id": "9e694610-60f1-4939-a1f9-1679e6408f27",
         "latitude": 40.7564036,
         "longitude": -73.99410139999999
-    },
-    "Adams_St_Tillary_St": {
-        "camera_id": "5bd248b9-1dab-4118-b4b2-d3ef3fbd7085",
-        "latitude": 40.6961084,
-        "longitude": -73.9885568
     },
     "Adam_C_Powell_Blvd_110_St_CPN": {
         "camera_id": "378e6e98-18b2-42a5-b0fa-b43af94f7395",
@@ -342,11 +216,6 @@
         "latitude": 40.770515,
         "longitude": -73.917648
     },
-    "Atlantic_Ave_Barclays_Center": {
-        "camera_id": "053afe02-e1b3-4bea-9995-787e72c7fff4",
-        "latitude": 40.6836635,
-        "longitude": -73.9788191
-    },
     "Atlantic_Ave_Boerum_St": {
         "camera_id": "2dcc40fd-3e70-44ba-8c6c-398e9ee4a22d",
         "latitude": 40.6890714,
@@ -358,11 +227,6 @@
         "latitude": 40.690249,
         "longitude": -73.99436659999999
     },
-    "Atlantic_Ave_Eastern_Pkwy": {
-        "camera_id": "fde1748c-7c0f-4df8-8acd-120df29a9305",
-        "latitude": 40.6762462,
-        "longitude": -73.908151
-    },
     "Atlantic_Ave_Henry_St": {
         "camera_id": "821d0c4e-f43f-4968-ad2d-566e40e53df6",
         "latitude": 40.6907667,
@@ -373,47 +237,15 @@
         "latitude": 40.8487802,
         "longitude": -73.93231970000001
     },
-    "Baxter_St_Canal_Street": {
-        "camera_id": "96be7098-dda4-42da-bfe2-55bc5c6b94fb",
-        "latitude": 40.7175577,
-        "longitude": -73.9993077
-    },
-    "Broadway_46_St-_Quad_North": {
-        "camera_id": "f3d82b25-6b10-44c7-ae89-30df075a7ac8",
-        "latitude": 40.75658,
-        "longitude": -73.914101,
-        "formatted_address": "Broadway 46 St- Quad North, Manhattan, New York, NY"
-    },
     "Bruckner_Blvd_Lincoln_Ave": {
         "camera_id": "82b0f566-cab5-4366-bc3a-67f82cc4fec7",
         "latitude": 40.80778189999999,
         "longitude": -73.9295152
     },
-    "Bushwick_Ave_Cooper_St": {
-        "camera_id": "a8805cdb-e305-42d0-b011-cb825380cf8e",
-        "latitude": 40.6849519,
-        "longitude": -73.91014349999999
-    },
     "Bushwick_Ave_De_Kalb_Ave": {
         "camera_id": "068461e2-c62f-4ce4-adac-5f9efe92af1d",
         "latitude": 40.6952189,
         "longitude": -73.92843979999999
-    },
-    "Bushwick_Ave_Gates_Ave": {
-        "camera_id": "74707723-013b-4bf1-9a8b-c209dbf71984",
-        "latitude": 40.69094,
-        "longitude": -73.92066729999999
-    },
-    "C2-BQE-29_WB_at_Morgan_Street": {
-        "camera_id": "c18f480c-e7a9-494b-b435-26adb0d9f881",
-        "latitude": 40.7730352,
-        "longitude": -73.7367605,
-        "formatted_address": "C2-BQE-29 WB at Morgan Street, Manhattan, New York, NY"
-    },
-    "Cadman_Plz_West_Tillary_St": {
-        "camera_id": "07c5a9ab-38b0-4176-a932-395cded5858e",
-        "latitude": 40.6962245,
-        "longitude": -73.99110859999999
     },
     "Canal_Street_Allen_Street": {
         "camera_id": "ed12f2da-9f65-44f0-a162-123c412716c6",
@@ -443,12 +275,6 @@
         "longitude": -73.9655834,
         "formatted_address": "Central Park West 72 St, Manhattan, New York, NY"
     },
-    "Central_Park_West_77_St": {
-        "camera_id": "90c74649-458d-4b5f-8f58-9ab77f03f4ad",
-        "latitude": 40.7825547,
-        "longitude": -73.9655834,
-        "formatted_address": "Central Park West 77 St, Manhattan, New York, NY"
-    },
     "Central_Park_West_86_St": {
         "camera_id": "8a6bc417-4877-4ebe-8052-88c1b261baf1",
         "latitude": 40.7852685,
@@ -459,11 +285,6 @@
         "latitude": 40.7825547,
         "longitude": -73.9655834,
         "formatted_address": "Central Park West 96 St, Manhattan, New York, NY"
-    },
-    "Church_Street_Vesey": {
-        "camera_id": "5beee073-18a8-4349-af6b-75eff7a78371",
-        "latitude": 40.7120877,
-        "longitude": -74.0101124
     },
     "Church_St_Park_Pl": {
         "camera_id": "b222af52-75f2-4588-80ef-354bb7c159c8",
@@ -476,12 +297,6 @@
         "longitude": -73.9075506,
         "formatted_address": "Claremont Boston Rd, Manhattan, New York, NY"
     },
-    "Clearview_Northern_Blvd": {
-        "camera_id": "e96fb86f-4bf6-4f97-b7f3-ec4f2e960788",
-        "latitude": 40.7627173,
-        "longitude": -73.8354153,
-        "formatted_address": "Clearview Northern Blvd, Manhattan, New York, NY"
-    },
     "Columbia_St_Carroll_St_-_168_202": {
         "camera_id": "c073c2d9-919f-4ba3-ad13-d331d378e12b",
         "latitude": 40.68327,
@@ -492,12 +307,6 @@
         "latitude": 40.6857559,
         "longitude": -74.0023569
     },
-    "CPW_110_St": {
-        "camera_id": "c217a64e-95c3-4442-96d1-7a6c177615d7",
-        "latitude": 40.7811022,
-        "longitude": -73.9724322,
-        "formatted_address": "CPW 110 St, Manhattan, New York, NY"
-    },
     "Crescent_st_39_Ave": {
         "camera_id": "97ace0b4-fcd2-4c3a-8c05-dbf73639ead3",
         "latitude": 40.7547684,
@@ -507,16 +316,6 @@
         "camera_id": "a3058350-1552-459f-8379-2fd06895e70a",
         "latitude": 40.7202619,
         "longitude": -73.9940227
-    },
-    "Delancy_St_Essex_St": {
-        "camera_id": "1f0cfaad-4c0a-46e8-a5e3-f206d83a875d",
-        "latitude": 40.7185592,
-        "longitude": -73.9881894
-    },
-    "Eastern_Pkwy_Bedford_Ave": {
-        "camera_id": "f4c47f52-9c8d-494a-92da-4dcc09a19fab",
-        "latitude": 40.6701749,
-        "longitude": -73.9552561
     },
     "Father_Capodanno_Blvd_Ocean_Ave": {
         "camera_id": "70c286f0-78bc-43e4-9284-63ea2843c769",
@@ -542,11 +341,6 @@
         "camera_id": "adc07b1d-e5e1-45da-bfb7-db8a0519f231",
         "latitude": 40.715127,
         "longitude": -73.9132891
-    },
-    "Flushing_Ave_61_St": {
-        "camera_id": "8c13c3b4-b227-4278-9beb-e58314c042d5",
-        "latitude": 40.7210414,
-        "longitude": -73.9041044
     },
     "Flushing_Ave_Fresh_Pond_Rd": {
         "camera_id": "b9085289-750b-403a-8031-681678d35ae0",
@@ -584,18 +378,6 @@
         "camera_id": "ad051a78-9c50-43b3-bb71-83b091acd818",
         "latitude": 40.8276829,
         "longitude": -73.92487899999999
-    },
-    "Gowanus_Expy_49_St": {
-        "camera_id": "2b4ed602-312d-4f31-a531-153ac33b4d87",
-        "latitude": 40.6454111,
-        "longitude": -74.0167979,
-        "formatted_address": "Gowanus Expy 49 St, Manhattan, New York, NY"
-    },
-    "Grand_Army_Plaza": {
-        "camera_id": "1c51b3ec-3d29-4025-928d-4e182e7c0bd5",
-        "latitude": 40.7642731,
-        "longitude": -73.9730286,
-        "formatted_address": "Grand Army Plaza, Manhattan, New York, NY"
     },
     "Grand_Ave_Hamilton_Pl": {
         "camera_id": "b08600e6-7189-4104-a484-709dc81a3fa7",
@@ -701,11 +483,6 @@
         "latitude": 40.7484811,
         "longitude": -73.9389113
     },
-    "Kenmare_St_Cleveland_pl": {
-        "camera_id": "93dea5a7-a63f-4415-ae12-f32b62540f11",
-        "latitude": 40.7214599,
-        "longitude": -73.9974087
-    },
     "Kissena_Blvd_Holly_Ave": {
         "camera_id": "ed8fac76-2128-4099-8dfd-80144bd059d4",
         "latitude": 40.7508916,
@@ -792,30 +569,15 @@
         "latitude": 40.7339843,
         "longitude": -73.95232659999999
     },
-    "Melrose_Ave_Webster_Ave_E_161": {
-        "camera_id": "8ab7071d-63a6-492a-8443-e0d817bc1339",
-        "latitude": 40.8278122,
-        "longitude": -73.91185759999999
-    },
     "Metropolitan_Ave_Berry_St": {
         "camera_id": "40213626-3ef8-4d63-be77-e1d84ca4d19c",
         "latitude": 40.7159419,
         "longitude": -73.9619269
     },
-    "Metropolitan_Ave_Union_Ave": {
-        "camera_id": "ba4a1b3a-6e33-4742-a471-18f204f488ef",
-        "latitude": 40.7140757,
-        "longitude": -73.9516359
-    },
     "Morningstar_Rd_Walker_St": {
         "camera_id": "710191bf-5753-49f7-a524-d0db75526600",
         "latitude": 40.6311642,
         "longitude": -74.1469163
-    },
-    "Narrows_Rd_South_Hylan_Blvd": {
-        "camera_id": "bfcd953c-3faf-48ea-a49a-848c706399b6",
-        "latitude": 40.605339,
-        "longitude": -74.07607999999999
     },
     "Northern_Blvd_108_St": {
         "camera_id": "822f0cb4-827d-41cd-8f35-2b328a8c1d24",
@@ -852,11 +614,6 @@
         "latitude": 40.7568508,
         "longitude": -73.8736834
     },
-    "Northern_Blvd_Little_Neck_Pkwy": {
-        "camera_id": "a23d8461-9d7c-4e11-a392-777ef35b48ba",
-        "latitude": 40.7706316,
-        "longitude": -73.7354419
-    },
     "Northern_Blvd_Main_St": {
         "camera_id": "f664cb82-a0fc-467e-9a6a-ca34c89cc63c",
         "latitude": 40.762756,
@@ -872,20 +629,10 @@
         "latitude": 40.763867,
         "longitude": -73.8281506
     },
-    "Northern_Blvd_Utopia_Pkwy": {
-        "camera_id": "d05b98ae-f2a7-4c26-8238-754081877484",
-        "latitude": 40.757828,
-        "longitude": -73.792564
-    },
     "Park_Ave_106_St": {
         "camera_id": "ce81bdbd-967b-4ad0-ab40-c4628bb59560",
         "latitude": 40.7930317,
         "longitude": -73.9480086
-    },
-    "Park_Ave_34_St": {
-        "camera_id": "17b6c7dd-2aa7-442a-8832-d39051a47d1b",
-        "latitude": 40.7470462,
-        "longitude": -73.9812644
     },
     "Park_Ave_72_St": {
         "camera_id": "b062d611-e0e8-40be-a180-c583391276f5",
@@ -916,17 +663,6 @@
         "camera_id": "0bf496dc-36dd-4311-808e-84ab6acec605",
         "latitude": 40.7302853,
         "longitude": -73.86218389999999
-    },
-    "Queens_Blvd_E_B_43_St": {
-        "camera_id": "60982889-171e-4208-ae1d-8f179f91231e",
-        "latitude": 40.595737,
-        "longitude": -73.7747668,
-        "formatted_address": "Queens Blvd East B 43 St, Manhattan, New York, NY"
-    },
-    "Queens_Plaza_N_Northern_Blvd": {
-        "camera_id": "a0ecf291-582c-4c42-933f-0b9ed4ce885c",
-        "latitude": 40.7510529,
-        "longitude": -73.9404294
     },
     "Riverside_Dr_W_165_St": {
         "camera_id": "75a7b81a-6233-47bf-8428-ea6c9edec1f8",
@@ -968,11 +704,6 @@
         "latitude": 40.6071119,
         "longitude": -74.0609837
     },
-    "Stillwell_Ave_Neptune_Ave": {
-        "camera_id": "85d33af1-a82c-499c-b303-a16c8c891fe6",
-        "latitude": 40.5792637,
-        "longitude": -73.9819545
-    },
     "St_Nicholas_Ave_181_St": {
         "camera_id": "3ad126cc-3f99-4626-a229-b9ba4d3f4b63",
         "latitude": 40.8493037,
@@ -992,11 +723,6 @@
         "camera_id": "e8a479f8-5170-4f1f-b258-b9745c966c71",
         "latitude": 40.7543545,
         "longitude": -73.9769759
-    },
-    "Van_Dam_St_48_Ave": {
-        "camera_id": "8645493f-d08c-4c0e-a572-b40f5fbeec56",
-        "latitude": 40.7410365,
-        "longitude": -73.93431090000001
     },
     "Water_St_John_St": {
         "camera_id": "ecdddb78-10be-47c6-ba27-e5d9da6b9a22",
@@ -1018,35 +744,15 @@
         "latitude": 40.7222679,
         "longitude": -73.9574629
     },
-    "Wythe_Ave_Williamsburg_st_w": {
-        "camera_id": "023cc794-4600-4c02-91e7-4603597172e1",
-        "latitude": 40.701687,
-        "longitude": -73.961609
-    },
     "York_Ave_72_St": {
         "camera_id": "d45fb588-de4c-4139-9e27-5b2d4c371b3d",
         "latitude": 40.7668601,
         "longitude": -73.95374819999999
     },
-    "46_St_Bet_5_Ave_&_Madison_Ave": {
-        "camera_id": "2589c0d6-c389-4861-b812-4ae68f560eba",
-        "latitude": 40.7567515,
-        "longitude": -73.91421179999999
-    },
-    "50_St_Btwn_8_Ave_&_Broadway": {
-        "camera_id": "0a49d947-2a5b-498d-a386-2cef5ce883fa",
-        "latitude": 40.636364,
-        "longitude": -73.994774
-    },
     "7_Ave_23St": {
         "camera_id": "fcfbaa3d-13e5-4687-9688-ae1eab37c723",
         "latitude": 40.6576778,
         "longitude": -73.9900804
-    },
-    "7_AVE___ADAM_CLAYTON_POWELL_BLVD@_125_St": {
-        "camera_id": "9bb33444-d2ec-47bd-952a-174f87013736",
-        "latitude": 40.8089439,
-        "longitude": -73.9482462
     },
     "Allan_St_(1_Ave)_Houston_St_(B)": {
         "camera_id": "98c2de4e-fa0c-41d0-b1ea-6d1df833d792",
@@ -1063,21 +769,10 @@
         "latitude": 40.5987496,
         "longitude": -73.766002
     },
-    "Beach_Channel_Dr_@B_90_St": {
-        "camera_id": "4b99e17b-d784-4ae3-a8f4-fb20e05895ee",
-        "latitude": 40.5886071,
-        "longitude": -73.8171202,
-        "formatted_address": "Beach Channel Dr @B 90 St, Manhattan, New York, NY"
-    },
     "Beach_Channel_Dr_@B_Mott_Ave": {
         "camera_id": "eca4e591-4ac8-471c-8e76-4710b52e6f9b",
         "latitude": 40.606096,
         "longitude": -73.7590958
-    },
-    "Bowery_Cooper_Sq_&_4_St": {
-        "camera_id": "afff9762-e6d4-4b4d-a2e7-60c13763dd16",
-        "latitude": 40.7271162,
-        "longitude": -73.9915934
     },
     "Flushing_Ave_Grand_Ave_&_64_St": {
         "camera_id": "b47d139f-69ae-427e-86b4-f970f9e990e1",
@@ -1099,10 +794,5 @@
         "camera_id": "76ce9adc-f73d-46b7-9ca7-fe6d7521b603",
         "latitude": 40.7502529,
         "longitude": -73.9380848
-    },
-    "Van_Dam_St_Bet_48_Ave_&_Hunter_Pt": {
-        "camera_id": "7e36617c-4210-4371-90df-89cfc2d25df2",
-        "latitude": 40.7408338,
-        "longitude": -73.9405329
     }
 }
