@@ -34,6 +34,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("address")
     parser.add_argument("--save", help="Write the fetched frame to this path")
+    parser.add_argument(
+        "--save-annotated",
+        help="Write the annotated frame (bounding boxes) to this path if status is True",
+    )
     args = parser.parse_args()
 
     settings = get_settings()
@@ -63,9 +67,14 @@ def main() -> None:
 
     detector = OpenParkingDetector(settings)
     detector.load()
-    result = detector.predict(image_bytes)
+    status, annotated_bytes = detector.predict(image_bytes)
     print()
-    print(f"Status: {resolve_status(result)}")
+    print(f"Status: {resolve_status(status)}")
+    if annotated_bytes is not None:
+        print(f"Annotated frame: {len(annotated_bytes)} bytes")
+        if args.save_annotated:
+            Path(args.save_annotated).write_bytes(annotated_bytes)
+            print(f"Saved annotated frame to {args.save_annotated}")
 
 
 if __name__ == "__main__":
