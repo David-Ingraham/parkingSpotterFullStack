@@ -1,6 +1,8 @@
-use alternative cameras to 86 canal and grand for after dark 
+allow for user feedback on model accuracy for spot detection
 swap out grande street and 86 for higher quality
 cross reference cam locations with street parking signs https://nycdotsigns.net/
+
+in eail give link to live feed from web as well as link to image from feedat the time of the models inferecen 
 
 
 enchance / deblur the images being server . have a button to deblurr for people?
