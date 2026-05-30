@@ -223,7 +223,7 @@ Thank you for your interest in contributing to Parking Spotter! This document pr
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+By contributing, you agree that your contributions will be licensed under the Business Source License 1.1.
 
 ---
 

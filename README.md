@@ -247,7 +247,7 @@ Backend will be available at `http://localhost:8000`
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Business Source License 1.1 - see the [LICENSE](LICENSE) file for details. Source code becomes available under Apache 2.0 four years after each version is published.
 
 ## Support
 
