@@ -13,6 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .cameras import display_name
 from .config import Settings
 from .db import Database
+from .dot import fetch_dot_image
 from .inference import OpenParkingDetector
 from .notifier import send_open_parking_email
 
@@ -129,7 +130,7 @@ class WatcherWorker:
             prev_raw = row["open_parking_status"]
             prev_status: Optional[bool] = None if prev_raw is None else bool(prev_raw)
 
-            image_bytes = await self._fetch_image(client, camera_id)
+            image_bytes = await fetch_dot_image(client, self._settings, camera_id)
             if image_bytes is None:
                 continue
 
@@ -145,17 +146,6 @@ class WatcherWorker:
             if new_status is True:
                 frame_bytes = annotated_bytes or image_bytes
                 await self._notify_open(address, frame_bytes)
-
-    async def _fetch_image(self, client: httpx.AsyncClient, camera_id: str) -> Optional[bytes]:
-        url = f"{self._settings.dot_image_base.rstrip('/')}/{camera_id}/image"
-        params = {"t": int(time.time() * 1000)}
-        try:
-            resp = await client.get(url, params=params)
-            resp.raise_for_status()
-            return resp.content
-        except Exception as exc:
-            logger.warning("DOT fetch failed for %s: %s", camera_id, exc)
-            return None
 
     async def _notify_open(self, address: str, frame_bytes: Optional[bytes]) -> None:
         pending = await self._db.pending_notifications(address)

@@ -23,7 +23,7 @@ class OpenParkingDetector:
       - status None  : no recognized detections. Frame is too dark / occluded
                        / noisy to trust; skip this cycle.
 
-    `annotated_jpeg_bytes` is populated only when status is True. It contains
+    `annotated_jpeg_bytes` is populated when status is True or False. It contains
     the input frame with bounding boxes, class labels, and confidences drawn
     by ultralytics' `Results.plot()`. On any failure to render or encode, the
     second element is None and callers should fall back to the raw frame.
@@ -109,11 +109,11 @@ class OpenParkingDetector:
             "Inference counts: open=%d occupied=%d", open_count, occupied_count
         )
 
-        if open_count > 0:
+        if open_count > 0 or occupied_count > 0:
             annotated = self._render_annotated(results)
-            return True, annotated
-        if occupied_count > 0:
-            return False, None
+            if open_count > 0:
+                return True, annotated
+            return False, annotated
         return None, None
 
     def _render_annotated(self, results) -> Optional[bytes]:

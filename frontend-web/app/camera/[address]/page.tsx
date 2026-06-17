@@ -113,6 +113,7 @@ export default async function CameraDetail({
         <div className="relative aspect-video">
           <CameraLive
             cameraId={camera.camera_id}
+            address={camera.address}
             alt={camera.displayName}
             className="h-full"
           />
@@ -125,8 +126,8 @@ export default async function CameraDetail({
       </div>
 
       <p className="mt-3 text-xs text-zinc-600">
-        Tap Refresh on the image for a newer frame. Images pulled directly from
-        NYC DOT.
+        Tap Refresh for a newer frame, or Analyze to run the parking model on
+        the current image. Images pulled directly from NYC DOT.
       </p>
 
       <div className="mt-4">

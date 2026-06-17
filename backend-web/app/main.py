@@ -1,16 +1,27 @@
 from __future__ import annotations
 
+import asyncio
+import base64
 import logging
 from contextlib import asynccontextmanager
 
+import httpx
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from .cameras import get_camera
 from .config import Settings, get_settings
 from .db import Database
+from .dot import fetch_dot_image
 from .inference import OpenParkingDetector
-from .schemas import CameraState, WatchCreate, WatchDelete, WatchResponse
+from .schemas import (
+    CameraState,
+    InferRequest,
+    InferResponse,
+    WatchCreate,
+    WatchDelete,
+    WatchResponse,
+)
 from .worker import WatcherWorker
 
 logging.basicConfig(
@@ -69,6 +80,18 @@ def require_api_key(
 
 def get_db() -> Database:
     return app.state.db
+
+
+def get_detector() -> OpenParkingDetector:
+    return app.state.detector
+
+
+def _infer_label(open_parking_status: bool | None) -> str:
+    if open_parking_status is True:
+        return "Open spot detected"
+    if open_parking_status is False:
+        return "Block appears full"
+    return "Unable to analyze"
 
 
 @app.get("/health")
@@ -144,4 +167,38 @@ async def get_camera_state(
         open_parking_status=None if raw is None else bool(raw),
         last_checked_utc=row["last_checked_utc"],
         watcher_count=int(row["watcher_count"]),
+    )
+
+
+@app.post("/infer", response_model=InferResponse, dependencies=[Depends(require_api_key)])
+async def infer_frame(
+    payload: InferRequest,
+    settings: Settings = Depends(get_settings),
+    detector: OpenParkingDetector = Depends(get_detector),
+) -> InferResponse:
+    camera = get_camera(settings.resolved_cameras_path(), payload.address)
+    if camera is None:
+        raise HTTPException(status_code=400, detail="Unknown camera address")
+
+    camera_id = str(camera["camera_id"])
+    async with httpx.AsyncClient(timeout=settings.dot_request_timeout_seconds) as client:
+        image_bytes = await fetch_dot_image(
+            client, settings, camera_id, cache_buster_ms=payload.t
+        )
+    if image_bytes is None:
+        raise HTTPException(status_code=502, detail="Could not fetch camera image")
+
+    open_parking_status, annotated_bytes = await asyncio.to_thread(
+        detector.predict, image_bytes
+    )
+
+    annotated_b64: str | None = None
+    if annotated_bytes is not None:
+        annotated_b64 = base64.b64encode(annotated_bytes).decode("ascii")
+
+    return InferResponse(
+        address=payload.address,
+        open_parking_status=open_parking_status,
+        label=_infer_label(open_parking_status),
+        annotated_image_base64=annotated_b64,
     )

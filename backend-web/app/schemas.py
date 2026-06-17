@@ -28,3 +28,18 @@ class CameraState(BaseModel):
     open_parking_status: Optional[bool]
     last_checked_utc: Optional[str]
     watcher_count: int
+
+
+class InferRequest(BaseModel):
+    address: str = Field(..., min_length=1, max_length=200)
+    t: Optional[int] = Field(
+        default=None,
+        description="Cache-buster timestamp in ms; matches the frame shown in the browser.",
+    )
+
+
+class InferResponse(BaseModel):
+    address: str
+    open_parking_status: Optional[bool]
+    label: str
+    annotated_image_base64: Optional[str] = None

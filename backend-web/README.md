@@ -59,6 +59,7 @@ All endpoints except `/health` require header `X-API-Key: <SHARED_API_KEY>`.
 - `POST /watch` body `{"address": "Grand_St_Bowery", "email": "a@b.com", "minutes": 30}`
 - `DELETE /watch` body `{"address": "Grand_St_Bowery", "email": "a@b.com"}`
 - `GET /state/{address}`
+- `POST /infer` body `{"address": "Grand_St_Bowery", "t": 1718659200000}` — optional `t` is the cache-buster ms timestamp matching the frame shown in the browser. Returns `open_parking_status`, `label`, and `annotated_image_base64` when any detection is made (open or occupied).
 
 ## Testing
 
