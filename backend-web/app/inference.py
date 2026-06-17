@@ -75,10 +75,14 @@ class OpenParkingDetector:
             logger.warning("Could not decode image: %s", exc)
             return None, None
 
+        open_threshold = self._settings.open_inference_conf_threshold
+        occupied_threshold = self._settings.inference_conf_threshold
+        predict_conf = min(open_threshold, occupied_threshold)
+
         try:
             results = self._model.predict(
                 source=image,
-                conf=self._settings.inference_conf_threshold,
+                conf=predict_conf,
                 verbose=False,
             )
         except Exception as exc:
@@ -96,13 +100,14 @@ class OpenParkingDetector:
             if boxes is None or len(boxes) == 0:
                 continue
             cls_tensor = getattr(boxes, "cls", None)
-            if cls_tensor is None:
+            conf_tensor = getattr(boxes, "conf", None)
+            if cls_tensor is None or conf_tensor is None:
                 continue
-            for raw in cls_tensor.tolist():
+            for raw, score in zip(cls_tensor.tolist(), conf_tensor.tolist()):
                 label = self._class_names.get(int(raw), "").lower()
-                if label in open_labels:
+                if label in open_labels and score >= open_threshold:
                     open_count += 1
-                elif label in occupied_labels:
+                elif label in occupied_labels and score >= occupied_threshold:
                     occupied_count += 1
 
         logger.debug(

@@ -10,6 +10,7 @@ primary_region = "ewr"
 
   POLL_INTERVAL_SECONDS = "25"
   INFERENCE_CONF_THRESHOLD = "0.4"
+  OPEN_INFERENCE_CONF_THRESHOLD = "0.05"
   OPEN_CLASSES = '["open parking"]'
   OCCUPIED_CLASSES = '["parkedCars"]'
   ALLOWED_DURATIONS = "[30,60,90]"

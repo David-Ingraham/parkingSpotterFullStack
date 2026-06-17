@@ -21,6 +21,7 @@ class Settings(BaseSettings):
 
     poll_interval_seconds: int = 25
     inference_conf_threshold: float = 0.4
+    open_inference_conf_threshold: float = 0.05
     open_classes: List[str] = Field(default_factory=lambda: ["open_parking"])
     occupied_classes: List[str] = Field(default_factory=lambda: ["parked_cars"])
     allowed_durations: List[int] = Field(default_factory=lambda: [30, 60, 90])
