@@ -14,6 +14,7 @@ export default function CameraCard({ camera, subtitle }: Props) {
       <div className="relative aspect-video">
         <CameraLive
           cameraId={camera.camera_id}
+          address={camera.address}
           alt={camera.displayName}
           className="h-full"
         />
